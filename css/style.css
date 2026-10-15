@@ -1,0 +1,2598 @@
+/* ========================================================
+   MŁYNÓWKA — DOMEK PRZY MŁYNIE
+   Minimalistyczny Styl ukoi.pl (Kopia 1:1)
+   Czysta biel · Stonowana szałwia (#73947D) · Wektorowe ikony · Widżet Rezerwacji · Moduł Bloga
+======================================================== */
+
+:root {
+  /* Kolorystyka ukoi.pl */
+  --ukoi-white: #FFFFFF;
+  --ukoi-bg-subtle: #FAFAF8;
+  --ukoi-sage: #73947D;            /* Ikoniczny szałwiowy zielony ukoi */
+  --ukoi-sage-hover: #5F7F68;
+  --ukoi-sage-light: #EBF2ED;
+  --ukoi-sage-banner: #7E9E88;     /* Kolor dolnego banera */
+  
+  --ukoi-text: #1F1F1D;            /* Głęboki, miękki czarny */
+  --ukoi-text-muted: #64645E;      /* Stonowany szary opisowy */
+  --ukoi-text-light: #94948C;
+  --ukoi-pipe: #D0D0C8;            /* Kolor pionowych kresek separatora */
+  
+  --ukoi-border: #E0E2E4;
+  --ukoi-border-subtle: rgba(31, 31, 29, 0.08);
+
+  --ukoi-dark-footer: #141715;     /* Ciemna stopka ukoi */
+  
+  /* Typografia */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Przyciski i elementy */
+  --radius-btn: 3px;               /* Bardzo delikatny, prostokątny promień ukoi */
+  --transition: all 0.25s ease;
+}
+
+/* RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ukoi-text);
+  background-color: var(--ukoi-white);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+/* STRUKTURA I KONTENERY */
+.container {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.editorial-narrow-container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.ukoi-section {
+  padding: 100px 0;
+  background-color: var(--ukoi-white);
+}
+
+.ukoi-section.bg-subtle {
+  background-color: var(--ukoi-bg-subtle);
+}
+
+/* SZAŁWIOWA KRESKA AKCENTOWA (UKOI ACCENT LINE) */
+.sage-accent-line {
+  width: 36px;
+  height: 3px;
+  background-color: var(--ukoi-sage);
+  margin: 0 auto 28px auto;
+  border-radius: 2px;
+}
+
+.sage-double-dash {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.sage-double-dash span {
+  width: 24px;
+  height: 3px;
+  background-color: var(--ukoi-sage);
+  border-radius: 2px;
+}
+
+/* PRZYCISKI SZAŁWIOWE (UKOI 1:1) */
+.btn-sage {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ukoi-sage);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 34px;
+  border-radius: var(--radius-btn);
+  transition: var(--transition);
+}
+
+.btn-sage:hover {
+  background-color: var(--ukoi-sage-hover);
+  color: #FFFFFF;
+}
+
+.btn-large {
+  padding: 16px 42px;
+  font-size: 0.88rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.center-buttons-row {
+  margin-bottom: 32px;
+}
+
+/* ========================================================
+   TOP BAR: JĘZYKI (CZYSTY MINIMALIZM)
+======================================================== */
+.top-bar {
+  background-color: var(--ukoi-white);
+  border-bottom: 1px solid var(--ukoi-border-subtle);
+  padding: 8px 0;
+  font-size: 0.78rem;
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top-languages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-link {
+  color: var(--ukoi-text-muted);
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 2px 4px;
+  font-size: 0.78rem;
+}
+
+.lang-link:hover,
+.lang-link.active {
+  color: var(--ukoi-text);
+  font-weight: 700;
+}
+
+.lang-sep {
+  color: var(--ukoi-pipe);
+}
+
+/* ========================================================
+   STICKY HEADER: UKOI LOGO & HAMBURGER
+======================================================== */
+.ukoi-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--ukoi-border-subtle);
+  transition: var(--transition);
+}
+
+.ukoi-header.scrolled {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
+}
+
+.ukoi-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px;
+}
+
+/* LOGO: CZYSTE, SZEROKO ROZSTRZELONE JAK UKOI */
+.ukoi-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-main {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ukoi-text);
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: var(--ukoi-sage);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.header-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn-header-cta {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: var(--ukoi-sage);
+  padding: 10px 22px;
+  border-radius: var(--radius-btn);
+  transition: var(--transition);
+}
+
+.btn-header-cta:hover {
+  background-color: var(--ukoi-sage-hover);
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  padding: 0;
+}
+
+.hamburger-btn .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--ukoi-text);
+  border-radius: 1px;
+}
+
+/* PANEL BOCZNY (DRAWER) */
+.ukoi-drawer {
+  position: fixed;
+  top: 86px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 86px);
+  background: var(--ukoi-white);
+  padding: 40px 24px;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  z-index: 999;
+  border-top: 1px solid var(--ukoi-border);
+}
+
+.ukoi-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.drawer-link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ukoi-text);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ukoi-border-subtle);
+}
+
+.drawer-phone {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ukoi-sage);
+}
+
+/* ========================================================
+   SEKCJA HERO (UKOI SCREENSHOT 1)
+======================================================== */
+.ukoi-hero {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  background-color: var(--ukoi-white);
+}
+
+.hero-center-box {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 50px auto;
+}
+
+.hero-heading {
+  font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ukoi-text);
+  margin-bottom: 24px;
+  letter-spacing: -0.015em;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ukoi-text-muted);
+  max-width: 760px;
+  margin: 0 auto 32px auto;
+}
+
+/* PIONOWE KRESKI W SUB-MENU (DOKŁADNIE JAK NA UKOI.PL) */
+.hero-pipe-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  margin-bottom: 20px;
+}
+
+.hero-pipe-menu a {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ukoi-text);
+}
+
+.hero-pipe-menu a:hover {
+  color: var(--ukoi-sage);
+}
+
+.hero-pipe-menu .pipe {
+  color: var(--ukoi-pipe);
+  margin: 0 12px;
+  font-size: 0.75rem;
+}
+
+.hero-motto {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 36px;
+}
+
+/* ========================================================
+   WIDŻET DO PRZEKIEROWANIA NA REZERWACJĘ (UKOI 1:1)
+   [ 15 Paź 2026 ] > [ 16 Paź 2026 ] | 2 os. | [ SZUKAJ ]
+======================================================== */
+.ukoi-booking-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ukoi-search-bar {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ukoi-border);
+  border-radius: var(--radius-btn);
+  background-color: var(--ukoi-white);
+  padding: 4px 4px 4px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
+}
+
+.ukoi-search-bar:hover {
+  border-color: #BCC0C4;
+}
+
+.search-date-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 2px;
+  position: relative;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.search-date-block:hover {
+  background-color: var(--ukoi-bg-subtle);
+}
+
+.date-number {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--ukoi-text);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.date-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.date-month {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ukoi-text);
+}
+
+.date-year {
+  font-size: 0.65rem;
+  color: var(--ukoi-text-muted);
+}
+
+.visually-hidden-picker {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+.search-arrow-divider {
+  color: var(--ukoi-text-light);
+  font-size: 1rem;
+  padding: 0 10px;
+  user-select: none;
+}
+
+.search-vertical-divider {
+  width: 1px;
+  height: 36px;
+  background-color: var(--ukoi-border);
+  margin: 0 16px;
+}
+
+.search-guests-block {
+  display: flex;
+  align-items: center;
+  padding-right: 14px;
+}
+
+.guests-select {
+  border: none;
+  background: transparent;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  cursor: pointer;
+  outline: none;
+  padding: 6px 4px;
+}
+
+.btn-ukoi-search {
+  background-color: var(--ukoi-sage);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 34px;
+  border-radius: var(--radius-btn);
+  transition: var(--transition);
+}
+
+.btn-ukoi-search:hover {
+  background-color: var(--ukoi-sage-hover);
+}
+
+.hero-rating-subtle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 0.82rem;
+}
+
+.hero-rating-subtle .rating-val {
+  font-weight: 700;
+  color: var(--ukoi-sage);
+}
+
+.hero-rating-subtle .rating-desc {
+  color: var(--ukoi-text-muted);
+}
+
+/* DUŻA GALERIA / CAROUSEL WPROWADZAJĄCY */
+.hero-gallery-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-carousel-viewport {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 60vh, 680px);
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-placeholder-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  background: rgba(20, 23, 21, 0.7);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+.hero-gallery-controls {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+.gallery-arrow {
+  font-size: 1.4rem;
+  color: var(--ukoi-text);
+  line-height: 1;
+  padding: 0 4px;
+  transition: var(--transition);
+}
+
+.gallery-arrow:hover {
+  color: var(--ukoi-sage);
+}
+
+.gallery-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.gallery-dots .dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--ukoi-pipe);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.gallery-dots .dot.active {
+  background-color: var(--ukoi-sage);
+}
+
+/* ========================================================
+   SEKCJA 2: 4 PIONOWE FOTOGRAFIE W JEDNYM RZĘDZIE (UKOI SCREENSHOT 2)
+======================================================== */
+.section-title {
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-weight: 400;
+  color: var(--ukoi-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle-link {
+  margin-bottom: 24px;
+}
+
+.section-subtitle-link a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ukoi-text);
+  border-bottom: 1px solid var(--ukoi-text);
+  padding-bottom: 2px;
+}
+
+.section-subtitle-link a:hover {
+  color: var(--ukoi-sage);
+  border-color: var(--ukoi-sage);
+}
+
+.section-editorial-text {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--ukoi-text-muted);
+  max-width: 780px;
+  margin: 0 auto 56px auto;
+}
+
+.section-editorial-text strong {
+  color: var(--ukoi-text);
+  font-weight: 600;
+}
+
+/* 4 PIONOWE KARTY ZDJĘCIOWE */
+.four-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 70px;
+}
+
+.photo-card-vert {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-wrapper {
+  position: relative;
+  aspect-ratio: var(--aspect, 3/4);
+  overflow: hidden;
+  margin-bottom: 14px;
+  background-color: #F0F0EA;
+}
+
+.editorial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.photo-wrapper:hover .editorial-img {
+  transform: scale(1.03);
+}
+
+.photo-label-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ukoi-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.photo-card-caption {
+  font-size: 0.85rem;
+  color: var(--ukoi-text-muted);
+  line-height: 1.5;
+}
+
+/* POETYCKI BLOK TEKSTOWY UKOI */
+.editorial-quote-block {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.quote-line-lead {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ukoi-text);
+  margin-bottom: 12px;
+}
+
+.quote-line {
+  font-size: 0.95rem;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.quote-line-accent {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ukoi-sage);
+  margin-top: 14px;
+}
+
+/* ========================================================
+   SEKCJA 3: SIATKA 4x3 FOTOGRAFII (UKOI SCREENSHOT 3)
+======================================================== */
+.ukoi-gallery-section {
+  padding: 80px 0;
+  background-color: var(--ukoi-white);
+}
+
+.gallery-section-intro {
+  margin-bottom: 48px;
+}
+
+.ukoi-photos-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.matrix-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #F0F0EA;
+}
+
+.matrix-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.matrix-item:hover img {
+  transform: scale(1.04);
+}
+
+.matrix-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, transparent 100%);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 24px 12px 10px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.matrix-item:hover .matrix-caption {
+  opacity: 1;
+}
+
+/* ========================================================
+   SEKCJA 4: REDAKCYJNE CZYM JEST MŁYNÓWKA (UKOI SCREENSHOT 4)
+======================================================== */
+.ukoi-editorial-qa {
+  padding: 110px 0;
+  background-color: var(--ukoi-white);
+}
+
+.qa-block {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.qa-block:last-child {
+  margin-bottom: 0;
+}
+
+.qa-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.qa-text {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 18px;
+}
+
+.qa-text strong {
+  color: var(--ukoi-text);
+  font-weight: 600;
+}
+
+.qa-bullets {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px auto 24px auto;
+  max-width: 720px;
+}
+
+.qa-bullets li {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ukoi-text-muted);
+  position: relative;
+  padding-left: 18px;
+}
+
+.qa-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ukoi-sage);
+}
+
+.qa-bullets li strong {
+  color: var(--ukoi-text);
+  font-weight: 600;
+}
+
+.qa-text-center {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ukoi-sage);
+  margin-top: 14px;
+}
+
+/* ========================================================
+   SEKCJA 5: ZASADY POBYTU I FAQ
+======================================================== */
+.rules-clean-table {
+  background: var(--ukoi-white);
+  border: 1px solid var(--ukoi-border);
+  border-radius: 2px;
+  margin-bottom: 50px;
+}
+
+.rule-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--ukoi-border-subtle);
+  font-size: 0.92rem;
+}
+
+.rule-row:last-child {
+  border-bottom: none;
+}
+
+.rule-title {
+  font-weight: 700;
+  color: var(--ukoi-text);
+}
+
+.rule-desc {
+  color: var(--ukoi-text-muted);
+  line-height: 1.6;
+}
+
+/* FAQ CZYSTE */
+.clean-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--ukoi-white);
+  border: 1px solid var(--ukoi-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  text-align: left;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ukoi-text);
+}
+
+.faq-trigger:hover {
+  color: var(--ukoi-sage);
+}
+
+.faq-sign {
+  font-size: 1.3rem;
+  color: var(--ukoi-sage);
+  font-weight: 300;
+  transition: transform 0.25s ease;
+}
+
+.faq-item.active .faq-sign {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-answer p {
+  padding: 0 24px 20px 24px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ukoi-text-muted);
+  border-top: 1px solid var(--ukoi-border-subtle);
+  padding-top: 14px;
+}
+
+/* ========================================================
+   SEKCJA 6: OPINIE I OCENY (UKOI SCREENSHOT 5)
+======================================================== */
+.reviews-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.reviews-img-wrapper {
+  position: relative;
+  aspect-ratio: var(--aspect, 1/1);
+  overflow: hidden;
+  background-color: #F0F0EA;
+}
+
+.score-stamp {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 16px 22px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stamp-rating {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ukoi-sage);
+  line-height: 1;
+}
+
+.stamp-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ukoi-text);
+  margin-top: 4px;
+}
+
+.stamp-sub {
+  font-size: 0.72rem;
+  color: var(--ukoi-text-muted);
+}
+
+.reviews-heading {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.reviews-intro-p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 24px;
+}
+
+.scores-compact-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--ukoi-border);
+  border-bottom: 1px solid var(--ukoi-border);
+  margin-bottom: 28px;
+}
+
+.score-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--ukoi-text-muted);
+}
+
+.score-line strong {
+  color: var(--ukoi-sage);
+  font-weight: 700;
+}
+
+.reviews-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guest-review-item {
+  background: var(--ukoi-bg-subtle);
+  padding: 18px 20px;
+  border-left: 2px solid var(--ukoi-sage);
+}
+
+.review-quote {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ukoi-text);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.review-author {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ukoi-sage);
+  display: block;
+}
+
+/* ========================================================
+   SEKCJA 7: ZIELONY BANER SZAŁWIOWY (UKOI SCREENSHOT 5 DOLNY BANER)
+======================================================== */
+.sage-banner-section {
+  background-color: var(--ukoi-sage-banner);
+  color: #FFFFFF;
+  padding: 60px 0;
+}
+
+.sage-banner-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.banner-dash {
+  width: 32px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 16px;
+}
+
+.banner-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.banner-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 540px;
+}
+
+.banner-actions-col {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.btn-banner-phone {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 13px 26px;
+  border-radius: var(--radius-btn);
+  transition: var(--transition);
+}
+
+.btn-banner-phone:hover {
+  background-color: #FFFFFF;
+  color: var(--ukoi-sage);
+}
+
+.btn-banner-whatsapp {
+  background-color: #FFFFFF;
+  color: var(--ukoi-sage);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: var(--radius-btn);
+  transition: var(--transition);
+}
+
+.btn-banner-whatsapp:hover {
+  background-color: #F4F4F0;
+  transform: translateY(-2px);
+}
+
+/* ========================================================
+   KONTENER ZEWNĘTRZNEGO SYSTEMU REZERWACJI ONLINE
+======================================================== */
+.booking-system-wrapper {
+  padding: 80px 0;
+  background-color: var(--ukoi-white);
+}
+
+.custom-booking-box {
+  background: var(--ukoi-bg-subtle);
+  border: 1px solid var(--ukoi-border);
+  border-radius: var(--radius-btn);
+  padding: 48px 32px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.booking-status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--ukoi-sage);
+  margin-bottom: 12px;
+}
+
+.booking-status-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 24px;
+}
+
+.booking-sub-note {
+  font-size: 0.8rem;
+  color: var(--ukoi-text-light);
+  margin-top: 18px;
+}
+
+/* ========================================================
+   MINIMALISTYCZNA CIEMNA STOPKA UKOI
+   Z REALNYMI LINKAMI SOCIAL MEDIA
+======================================================== */
+.ukoi-footer {
+  background-color: var(--ukoi-dark-footer);
+  color: #FFFFFF;
+  padding: 80px 0 36px 0;
+  font-size: 0.88rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.footer-brand-title {
+  font-size: 1.6rem;
+  letter-spacing: 0.25em;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+}
+
+.footer-brand-desc {
+  font-size: 0.88rem;
+  color: #A0A09A;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.footer-lang-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--ukoi-sage);
+  border: 1px solid rgba(115, 148, 125, 0.4);
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+
+.footer-col-header {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.footer-addr {
+  font-style: normal;
+  color: #A0A09A;
+  line-height: 1.7;
+}
+
+.footer-map-pin {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--ukoi-sage);
+  font-weight: 600;
+}
+
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #A0A09A;
+}
+
+.footer-links-list a {
+  color: #FFFFFF;
+}
+
+.footer-links-list a:hover {
+  color: var(--ukoi-sage);
+}
+
+.footer-social-text {
+  color: #A0A09A;
+  margin-bottom: 16px;
+}
+
+.footer-social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.footer-social-link:hover {
+  background: var(--ukoi-sage);
+  border-color: var(--ukoi-sage);
+}
+
+.footer-bottom-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  color: #7A7A74;
+}
+
+.footer-bottom-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-bottom-nav a:hover {
+  color: #FFFFFF;
+}
+
+/* ========================================================
+   PŁYWAJĄCY DYMEK KONTAKTOWY (FLOATING CONTACT BUBBLE)
+   Elegancki wektorowy styl SVG
+======================================================== */
+.ukoi-floating-contact {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}
+
+.bubble-trigger-button {
+  width: 54px;
+  height: 54px;
+  background-color: var(--ukoi-sage);
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.bubble-trigger-button:hover {
+  background-color: var(--ukoi-sage-hover);
+  transform: scale(1.05);
+}
+
+.bubble-pulse {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #25D366;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+}
+
+.contact-bubble-menu {
+  position: absolute;
+  bottom: 66px;
+  right: 0;
+  width: 290px;
+  background: #FFFFFF;
+  border: 1px solid var(--ukoi-border);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+.contact-bubble-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.bubble-menu-top {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--ukoi-bg-subtle);
+  border-bottom: 1px solid var(--ukoi-border);
+  gap: 8px;
+}
+
+.bubble-status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ukoi-sage);
+  border-radius: 50%;
+}
+
+.bubble-status-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ukoi-text);
+  flex-grow: 1;
+}
+
+.bubble-close-btn {
+  font-size: 1rem;
+  color: var(--ukoi-text-muted);
+}
+
+.bubble-menu-channels {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bubble-channel-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--ukoi-border);
+  transition: var(--transition);
+}
+
+.bubble-channel-link:hover {
+  background-color: var(--ukoi-bg-subtle);
+  border-color: var(--ukoi-sage);
+}
+
+.channel-svg {
+  color: var(--ukoi-sage);
+  flex-shrink: 0;
+}
+
+.channel-desc strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ukoi-text);
+}
+
+.channel-desc small {
+  font-size: 0.72rem;
+  color: var(--ukoi-text-muted);
+}
+
+/* ========================================================
+   STICKY MOBILE BOTTOM BAR
+======================================================== */
+.ukoi-sticky-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid var(--ukoi-border);
+  padding: 10px 16px;
+  z-index: 9990;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-mobile-book {
+  flex-grow: 1;
+  padding: 12px 18px;
+  font-size: 0.8rem;
+}
+
+.btn-mobile-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ukoi-border);
+  border-radius: var(--radius-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ukoi-text);
+  background: var(--ukoi-white);
+  transition: var(--transition);
+}
+
+.btn-mobile-icon:hover {
+  color: var(--ukoi-sage);
+  border-color: var(--ukoi-sage);
+}
+
+/* MODAL */
+.ukoi-booking-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 23, 21, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.ukoi-booking-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog {
+  background: #FFFFFF;
+  border-radius: 4px;
+  max-width: 540px;
+  width: 100%;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 1.2rem;
+  color: var(--ukoi-text-muted);
+}
+
+.modal-header-text {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.modal-sub {
+  font-size: 0.88rem;
+  color: var(--ukoi-text-muted);
+}
+
+.modal-integration-info {
+  background: var(--ukoi-bg-subtle);
+  border: 1px solid var(--ukoi-border);
+  padding: 18px;
+  border-radius: 2px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: var(--ukoi-text-muted);
+}
+
+.modal-integration-info code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.modal-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ========================================================
+   MODUŁ BLOGA (UKOI.PL STYLE)
+======================================================== */
+.ukoi-breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ukoi-breadcrumbs a {
+  color: var(--ukoi-text);
+  font-weight: 500;
+}
+
+.ukoi-breadcrumbs a:hover {
+  color: var(--ukoi-sage);
+}
+
+.crumb-sep {
+  color: var(--ukoi-pipe);
+}
+
+.crumb-current {
+  color: var(--ukoi-sage);
+  font-weight: 600;
+}
+
+.blog-hero-section {
+  padding: 60px 0 30px 0;
+  background-color: var(--ukoi-white);
+}
+
+.blog-grid-section {
+  padding: 40px 0 80px 0;
+}
+
+.ukoi-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 32px;
+}
+
+.blog-card {
+  background: var(--ukoi-white);
+  border: 1px solid var(--ukoi-border);
+  border-radius: 2px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.blog-card:hover {
+  border-color: var(--ukoi-sage);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 12px;
+}
+
+.meta-dot {
+  color: var(--ukoi-pipe);
+}
+
+.blog-card-title {
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.blog-card-title a:hover {
+  color: var(--ukoi-sage);
+}
+
+.blog-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ukoi-text-muted);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.blog-card-footer {
+  border-top: 1px solid var(--ukoi-border-subtle);
+  padding-top: 16px;
+}
+
+.blog-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ukoi-sage);
+}
+
+.blog-read-link:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+.link-arrow {
+  transition: transform 0.2s ease;
+}
+
+.blog-empty-state {
+  padding: 80px 20px;
+  color: var(--ukoi-text-muted);
+}
+
+/* WIDOK POJEDYNCZEGO WPISU */
+.blog-post-page {
+  background-color: var(--ukoi-white);
+}
+
+.post-header-section {
+  padding: 60px 0 40px 0;
+  text-align: center;
+}
+
+.post-headline {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  color: var(--ukoi-text);
+  line-height: 1.25;
+  margin-bottom: 20px;
+  letter-spacing: -0.015em;
+}
+
+.post-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--ukoi-text-muted);
+  flex-wrap: wrap;
+}
+
+.meta-author strong {
+  color: var(--ukoi-text);
+}
+
+.post-body-section {
+  padding: 20px 0 60px 0;
+}
+
+/* TYPOGRAFIA DLA TREŚCI MARKDOWN */
+.ukoi-markdown-content {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #333330;
+}
+
+.ukoi-markdown-content h2 {
+  font-size: 1.65rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  margin-top: 48px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ukoi-border-subtle);
+}
+
+.ukoi-markdown-content h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--ukoi-text);
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.ukoi-markdown-content p {
+  margin-bottom: 22px;
+}
+
+.ukoi-markdown-content strong {
+  color: var(--ukoi-text);
+  font-weight: 600;
+}
+
+.ukoi-markdown-content ul,
+.ukoi-markdown-content ol {
+  margin: 20px 0 28px 24px;
+}
+
+.ukoi-markdown-content ul {
+  list-style: disc;
+}
+
+.ukoi-markdown-content ol {
+  list-style: decimal;
+}
+
+.ukoi-markdown-content li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.ukoi-markdown-content hr {
+  border: none;
+  border-top: 1px solid var(--ukoi-border);
+  margin: 40px 0;
+}
+
+.ukoi-markdown-content blockquote {
+  border-left: 3px solid var(--ukoi-sage);
+  padding: 12px 20px;
+  background-color: var(--ukoi-bg-subtle);
+  margin: 28px 0;
+  font-style: italic;
+  color: var(--ukoi-text);
+}
+
+.post-back-nav {
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ukoi-border);
+}
+
+.post-back-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ukoi-sage);
+}
+
+.post-back-link:hover {
+  color: var(--ukoi-sage-hover);
+}
+
+/* BANER KONWERSJI POD ARTYKUŁEM */
+.post-conversion-banner {
+  padding: 40px 0 100px 0;
+}
+
+.conversion-box {
+  background: var(--ukoi-bg-subtle);
+  border: 1px solid var(--ukoi-border);
+  border-radius: 4px;
+  padding: 50px 36px;
+}
+
+.conversion-title {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--ukoi-text);
+  margin-bottom: 14px;
+}
+
+.conversion-lead {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ukoi-text-muted);
+  max-width: 620px;
+  margin: 0 auto 32px auto;
+}
+
+.conversion-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.conversion-quick-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.quick-contact-anchor {
+  color: var(--ukoi-sage);
+  font-weight: 600;
+}
+
+.quick-contact-anchor:hover {
+  text-decoration: underline;
+}
+
+/* ========================================================
+   RESPONSYWNOŚĆ (MEDIA QUERIES)
+======================================================== */
+@media (max-width: 1024px) {
+  .four-photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ukoi-photos-matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ukoi-sticky-mobile-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ukoi-floating-contact {
+    bottom: 74px;
+    right: 16px;
+  }
+
+  .ukoi-footer {
+    padding-bottom: 84px;
+  }
+
+  .ukoi-search-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12px;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .search-vertical-divider {
+    display: none;
+  }
+
+  .btn-ukoi-search {
+    width: 100%;
+    text-align: center;
+  }
+
+  .four-photos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ukoi-photos-matrix {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ukoi-blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sage-banner-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .banner-actions-col {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .btn-banner-phone,
+  .btn-banner-whatsapp {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rule-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .scores-compact-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-line {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .btn-header-cta {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM BOOKING BAR Z DWOMA DEDYKOWANYMI MINI-KALENDARZYKAMI (SZAŁWIOWA ZIELEŃ)
+   ========================================================================== */
+.custom-booking-bar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 36px auto 18px;
+  max-width: 740px;
+  width: 100%;
+  z-index: 50;
+}
+
+.custom-booking-bar {
+  display: flex;
+  align-items: stretch;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  height: 84px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bar-date-segment-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.bar-date-segment {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 20px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.bar-date-segment:hover,
+.bar-date-segment.active-cell {
+  background: #F7FAF8;
+}
+
+.big-day-number {
+  font-family: 'Plus Jakarta Sans', Georgia, serif;
+  font-size: 38px;
+  font-weight: 500;
+  color: #1B2A23;
+  line-height: 1;
+}
+
+.sage-number {
+  color: #73947D; /* zielony szałwiowy zamiast złotego */
+}
+
+.date-meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.month-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1B2A23;
+  line-height: 1.2;
+}
+
+.sage-text {
+  color: #73947D;
+}
+
+.day-name {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #8C8C8C;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.bar-arrow-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CBD5E1;
+  padding: 0 8px;
+}
+
+.bar-search-btn.btn-sage-action {
+  background: #73947D; /* Zielony szałwiowy */
+  color: #FFFFFF;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 46px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.bar-search-btn.btn-sage-action:hover {
+  background: #5C7C66;
+}
+
+.bar-search-btn.btn-sage-action:active {
+  transform: scale(0.99);
+}
+
+/* Kalendarz Popup Dropdown (Dedykowany pod każdy segment) */
+.calendar-floating-card {
+  position: absolute;
+  top: calc(100% + 12px);
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
+  padding: 24px 26px 20px;
+  width: 330px;
+  z-index: 100;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  animation: calFadeIn 0.2s ease-out;
+  box-sizing: border-box;
+}
+
+.calendar-floating-card.card-checkin {
+  left: 0;
+  right: auto;
+}
+
+.calendar-floating-card.card-checkout {
+  right: 0;
+  left: auto;
+}
+
+@keyframes calFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cal-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #73947D;
+  background: #F0F5F2;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.cal-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.cal-arrow-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+  font-size: 22px;
+  line-height: 1;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+
+.cal-arrow-btn:hover {
+  background: #F3F4F6;
+  color: #73947D;
+}
+
+.cal-month-title-wrap {
+  text-align: center;
+}
+
+.cal-month-title {
+  display: block;
+  font-family: Georgia, 'Plus Jakarta Sans', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1B2A23;
+}
+
+.cal-year-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #73947D;
+  margin-top: 1px;
+}
+
+.cal-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #9CA3AF;
+  margin-bottom: 12px;
+}
+
+.cal-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 6px;
+  text-align: center;
+}
+
+.cal-day-cell {
+  background: none;
+  border: none;
+  height: 36px;
+  width: 36px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s, color 0.15s;
+}
+
+.cal-day-cell:hover:not(.other-month):not(.disabled-date) {
+  background: #F0F5F2;
+  color: #73947D;
+}
+
+.cal-day-cell.other-month {
+  color: #D1D5DB;
+  cursor: default;
+}
+
+.cal-day-cell.selected-sage {
+  background: #73947D !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+.cal-day-cell.secondary-select {
+  border: 2px solid #73947D;
+  font-weight: 700;
+  color: #73947D;
+}
+
+.cal-day-cell.in-range {
+  background: #EBF2ED;
+  border-radius: 4px;
+}
+
+.cal-day-cell.disabled-date {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .calendar-floating-card.card-checkin,
+  .calendar-floating-card.card-checkout {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 92vw;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-booking-bar {
+    height: auto;
+    flex-direction: column;
+  }
+  .bar-date-segment {
+    padding: 16px;
+    justify-content: flex-start;
+  }
+  .bar-arrow-divider {
+    display: none;
+  }
+  .bar-search-btn {
+    width: 100%;
+    padding: 18px 24px;
+  }
+  .calendar-floating-card {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92vw;
+    max-width: 320px;
+  }
+}
+
+/* ==========================================================================
+   RESPONSYWNA GALERIA FOTOGRAFII (42 ZDJĘCIA) & LIGHTBOX
+   ========================================================================== */
+.gallery-section {
+  padding: 96px 0;
+  background-color: #FAF8F5;
+  border-top: 1px solid var(--ukoi-border);
+  border-bottom: 1px solid var(--ukoi-border);
+}
+
+.gallery-filter-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 36px 0 44px;
+}
+
+.gallery-filter-btn {
+  background: #FFFFFF;
+  border: 1px solid var(--ukoi-border);
+  color: var(--ukoi-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: all 0.2s ease;
+}
+
+.gallery-filter-btn:hover {
+  border-color: var(--ukoi-sage);
+  color: var(--ukoi-text);
+}
+
+.gallery-filter-btn.active {
+  background: var(--ukoi-sage);
+  color: #FFFFFF;
+  border-color: var(--ukoi-sage);
+}
+
+.gallery-responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.gallery-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid var(--ukoi-border);
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-card-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 68%; /* Format ~ 3:2 / 4:3 */
+  background: #EEEEEE;
+  overflow: hidden;
+}
+
+.gallery-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-card-img {
+  transform: scale(1.04);
+}
+
+.gallery-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(27, 42, 35, 0.88) 0%, rgba(27, 42, 35, 0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: #FFFFFF;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-card:hover .gallery-card-overlay {
+  opacity: 1;
+}
+
+.gallery-card-badge {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+
+.gallery-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.gallery-card-caption {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.9;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gallery-zoom-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lightbox Modal */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 20, 17, 0.94);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 1080px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 38px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.lightbox-close-btn:hover {
+  opacity: 1;
+}
+
+.lightbox-image-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1B2A23;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-main-img {
+  max-height: 72vh;
+  max-width: 100%;
+  object-fit: contain;
+  background: #000000;
+}
+
+.lightbox-info-bar {
+  width: 100%;
+  padding: 20px 28px;
+  background: #1B2A23;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.info-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.info-counter {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--ukoi-sage-light);
+}
+
+.info-category {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C89945;
+}
+
+.info-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.info-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev-btn {
+  left: -70px;
+}
+
+.next-btn {
+  right: -70px;
+}
+
+@media (max-width: 1240px) {
+  .prev-btn { left: 12px; }
+  .next-btn { right: 12px; }
+  .lightbox-nav-btn {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-responsive-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .lightbox-main-img {
+    max-height: 55vh;
+  }
+  .lightbox-info-bar {
+    padding: 16px;
+  }
+  .info-title {
+    font-size: 16px;
+  }
+  .info-desc {
+    font-size: 13px;
+  }
+}
+
