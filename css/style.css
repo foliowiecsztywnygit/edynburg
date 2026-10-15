@@ -225,24 +225,29 @@ ul {
 .ukoi-logo {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo-main {
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.6vw, 2.3rem);
   font-weight: 400;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ukoi-text);
-  line-height: 1;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .logo-sub {
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
   font-weight: 600;
   color: var(--ukoi-sage);
-  margin-top: 6px;
+  margin-top: 5px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .header-right-tools {
@@ -1897,6 +1902,22 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .ukoi-header-container {
+    padding: 16px 16px;
+  }
+
+  .logo-main {
+    font-size: 1.35rem;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+  }
+
+  .logo-sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
   .ukoi-sticky-mobile-bar {
     display: flex;
     align-items: center;
@@ -1978,6 +1999,24 @@ ul {
 
   .btn-header-cta {
     display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ukoi-header-container {
+    padding: 14px 14px;
+  }
+
+  .logo-main {
+    font-size: 1.18rem;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+  }
+
+  .logo-sub {
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
   }
 }
 

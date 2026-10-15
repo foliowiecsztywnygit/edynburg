@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           
           {/* Kolumna 1: Brand */}
           <div className="footer-col">
-            <div className="footer-brand-title">M Ł Y N Ó W K A</div>
+            <div className="footer-brand-title">MŁYNÓWKA</div>
             <p className="footer-brand-desc">
               Nowy drewniany domek w stylu alpejskim (70 m²) na wyłączność. Baza wypadowa w Krościenku nad Dunajcem. Ogród, stary młyn i relaks w Pieninach.
             </p>

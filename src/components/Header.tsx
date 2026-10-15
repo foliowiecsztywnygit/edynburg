@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           
           {/* LOGO UKOI STYLE */}
           <Link to="/" className="ukoi-logo" aria-label="Młynówka Domek przy Młynie">
-            <span className="logo-main">M Ł Y N Ó W K A</span>
+            <span className="logo-main">MŁYNÓWKA</span>
             <span className="logo-sub">DOMEK PRZY MŁYNIE · PIENINY</span>
           </Link>
 
