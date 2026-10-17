@@ -338,18 +338,67 @@ ul {
 }
 
 /* ========================================================
-   SEKCJA HERO (UKOI SCREENSHOT 1)
+   SEKCJA HERO — ELEGANCKIE TŁO (TŁOHERO.JPG) + TREŚĆ UKOI
 ======================================================== */
 .ukoi-hero {
-  padding-top: 60px;
-  padding-bottom: 40px;
+  position: relative;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 70px;
   background-color: var(--ukoi-white);
 }
 
+/* Ambient wrapper ze zdjęciem w tle (tłohero.jpg) */
+.hero-banner-wrapper {
+  width: 100%;
+  background: linear-gradient(180deg, #4b78a4 0%, #76a0c7 20%, #aed0eb 48%, #eef5fa 78%, #ffffff 100%);
+  padding-top: 24px;
+  padding-bottom: 20px;
+}
+
+.hero-banner-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Panoramiczny baner tła */
+.hero-cover-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 42vw, 480px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  background-color: #2b455b;
+}
+
+.hero-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-cover-banner:hover .hero-cover-image {
+  transform: scale(1.015);
+}
+
+.hero-cover-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 70%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+/* Oryginalny boks tekstowy hero */
 .hero-center-box {
   text-align: center;
   max-width: 900px;
-  margin: 0 auto 50px auto;
+  margin: 50px auto 0 auto;
+  padding: 0 20px;
 }
 
 .hero-heading {
@@ -369,7 +418,7 @@ ul {
   margin: 0 auto 32px auto;
 }
 
-/* PIONOWE KRESKI W SUB-MENU (DOKŁADNIE JAK NA UKOI.PL) */
+/* Pionowe kreski w sub-menu */
 .hero-pipe-menu {
   display: flex;
   align-items: center;
@@ -385,6 +434,8 @@ ul {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ukoi-text);
+  text-decoration: none;
+  transition: var(--transition);
 }
 
 .hero-pipe-menu a:hover {
@@ -402,6 +453,44 @@ ul {
   font-style: italic;
   color: var(--ukoi-text-muted);
   margin-bottom: 36px;
+}
+
+.hero-rating-subtle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 0.82rem;
+}
+
+.hero-rating-subtle .rating-val {
+  font-weight: 700;
+  color: var(--ukoi-sage);
+}
+
+.hero-rating-subtle .rating-desc {
+  color: var(--ukoi-text-muted);
+}
+
+@media (max-width: 600px) {
+  .hero-banner-wrapper {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .hero-cover-banner {
+    border-radius: 8px;
+    height: 220px;
+  }
+
+  .hero-center-box {
+    margin-top: 32px;
+  }
+
+  .hero-pipe-menu .pipe {
+    margin: 0 8px;
+  }
 }
 
 /* ========================================================

@@ -8,34 +8,6 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
-  // Karuzela hero z autentycznymi zdjęciami z folderu /młynówka
-  const [heroIndex, setHeroIndex] = useState(0);
-  const heroImages = [
-    {
-      src: "/mlynowka/857438807.jpg",
-      caption: "MŁYNÓWKA — CAŁOROCZNY DOMEK 70 M² W KROŚCIENKU NAD DUNAJCEM ZE SŁONECZNYM TARASEM"
-    },
-    {
-      src: "/mlynowka/653703659.jpg",
-      caption: "PONAD 1 HEKTAR ZIELONEGO OGRODU Z LUSTREM WODY POTOKU MŁYNÓWKA NA TLE PIENIN"
-    },
-    {
-      src: "/mlynowka/856800596.jpg",
-      caption: "SŁONECZNY SALON Z PANORAMICZNYMI OKNAMI, CEGLANĄ ŚCIANĄ, SOFĄ I WISZĄCYM HAMAKIEM"
-    },
-    {
-      src: "/mlynowka/418595368.jpg",
-      caption: "HISTORIA MIEJSCA — ZABYTKOWY DREWNIANY MŁYN WODNY I TRADYCJA PIENIŃSKIEJ GOŚCINNOŚCI"
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6500);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
-
   // Stan FAQ
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
@@ -61,6 +33,22 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
       
       {/* 1. HERO SECTION */}
       <section className="ukoi-hero" id="hero">
+        
+        {/* TŁO HERO: PANORAMA (TŁOHERO.JPG) Z BŁĘKITNYM GRADIENTEM NIEBA */}
+        <div className="hero-banner-wrapper">
+          <div className="container hero-banner-container">
+            <div className="hero-cover-banner">
+              <img 
+                src="/tlohero.jpg" 
+                alt="Młynówka Domek przy Młynie — widok na ogród, potok i Pieniny" 
+                className="hero-cover-image" 
+              />
+              <div className="hero-cover-gradient-overlay" />
+            </div>
+          </div>
+        </div>
+
+        {/* ORYGINALNA ZAWARTOŚĆ HERO SPRZED ZMIAN */}
         <div className="container hero-center-box">
           
           <div className="sage-accent-line"></div>
@@ -105,48 +93,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
             <span className="rating-desc">Wyjątkowy (43 autentyczne opinie gości)</span>
           </div>
 
-        </div>
-
-        {/* Hero Photo Carousel */}
-        <div className="hero-gallery-container">
-          <div className="hero-carousel-viewport">
-            {heroImages.map((img, idx) => (
-              <div key={idx} className={`hero-slide ${idx === heroIndex ? 'active' : ''}`}>
-                <img src={img.src} alt="Młynówka Domek przy Młynie w Pieninach" className="hero-photo" />
-                <div className="photo-placeholder-caption">
-                  <span>{img.caption}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="hero-gallery-controls">
-            <button 
-              type="button" 
-              className="gallery-arrow" 
-              onClick={() => setHeroIndex((heroIndex - 1 + heroImages.length) % heroImages.length)}
-              aria-label="Poprzednie zdjęcie"
-            >
-              ‹
-            </button>
-            <div className="gallery-dots">
-              {heroImages.map((_, i) => (
-                <span 
-                  key={i} 
-                  className={`dot ${i === heroIndex ? 'active' : ''}`}
-                  onClick={() => setHeroIndex(i)}
-                />
-              ))}
-            </div>
-            <button 
-              type="button" 
-              className="gallery-arrow" 
-              onClick={() => setHeroIndex((heroIndex + 1) % heroImages.length)}
-              aria-label="Następne zdjęcie"
-            >
-              ›
-            </button>
-          </div>
         </div>
       </section>
 
