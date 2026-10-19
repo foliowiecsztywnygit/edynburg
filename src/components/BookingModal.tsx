@@ -1,4 +1,5 @@
 import React from 'react';
+import { BotanicalDivider } from './BotanicalDivider';
 import { Language, translations } from '../translations';
 
 interface BookingModalProps {
@@ -51,7 +52,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         </button>
 
         <div className="modal-header-text">
-          <div className="sage-accent-line"></div>
+          <BotanicalDivider />
           <h3 className="modal-title">{t.modalTitle}</h3>
           <p className="modal-sub">{t.modalSubtitle}</p>
         </div>

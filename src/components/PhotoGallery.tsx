@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Language, translations } from '../translations';
 import { propertyPhotos, PropertyPhoto } from '../data/photosData';
+import { BotanicalDivider } from './BotanicalDivider';
 
 interface PhotoGalleryProps {
   lang: Language;
@@ -55,7 +56,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ lang }) => {
       <div className="container">
         
         <div className="section-header-block text-center">
-          <div className="sage-accent-line"></div>
+          <BotanicalDivider />
           <span className="section-eyebrow">The Edinburgh Garden House · EH17</span>
           <h2 className="section-title">{t.title}</h2>
           <p className="section-editorial-text">{t.subtitle}</p>

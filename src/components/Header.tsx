@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
         <div className="container top-bar-container">
           
           <div className="property-switcher">
-            <span className="property-switcher-label">📍 {t.brand.sub}</span>
+            <span className="property-switcher-label">🌿 {t.brand.sub}</span>
           </div>
 
           <div className="top-languages">
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
           {/* LOGO */}
           <a href="#hero" className="ukoi-logo" aria-label={t.brand.name}>
             <span className="logo-main">{t.brand.name}</span>
-            <span className="logo-sub">{t.brand.sub}</span>
+            <span className="logo-sub">🌿 {t.brand.sub}</span>
           </a>
 
           {/* DESKTOP NAV */}

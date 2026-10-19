@@ -101,13 +101,108 @@ ul {
   background-color: var(--ukoi-bg-subtle);
 }
 
-/* SZAŁWIOWA KRESKA AKCENTOWA (UKOI ACCENT LINE) */
+/* SZAŁWIOWA KRESKA AKCENTOWA & FLORALNY AKCENT BOTANICZNY */
 .sage-accent-line {
-  width: 36px;
-  height: 3px;
-  background-color: var(--ukoi-sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: auto;
+  max-width: 180px;
+  height: auto;
+  background: transparent;
   margin: 0 auto 28px auto;
-  border-radius: 2px;
+}
+
+.sage-accent-line::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ukoi-sage, #73947D));
+}
+
+.sage-accent-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ukoi-sage, #73947D), transparent);
+}
+
+/* DEDYKOWANY BOTANICAL DIVIDER Z LIŚĆMI SZKOCKIMI */
+.botanical-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto 28px auto;
+  max-width: 240px;
+  width: 100%;
+}
+
+.botanical-line {
+  flex: 1;
+  height: 1px;
+}
+
+.botanical-line.left {
+  background: linear-gradient(90deg, transparent, var(--ukoi-sage, #73947D));
+}
+
+.botanical-line.right {
+  background: linear-gradient(90deg, var(--ukoi-sage, #73947D), transparent);
+}
+
+.botanical-sprig-svg {
+  width: 44px;
+  height: 18px;
+  color: var(--ukoi-sage, #73947D);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.botanical-divider:hover .botanical-sprig-svg {
+  transform: scale(1.1);
+}
+
+/* FLORALNE ZNAKI WODNE (SUBTLE BACKGROUND WATERMARKS) */
+.botanical-watermark-wrapper {
+  position: relative;
+}
+
+.botanical-watermark {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.04;
+  color: var(--ukoi-sage, #73947D);
+  z-index: 0;
+}
+
+.botanical-watermark.top-left {
+  top: 10px;
+  left: 20px;
+  width: 140px;
+  height: 140px;
+}
+
+.botanical-watermark.bottom-right {
+  bottom: 10px;
+  right: 20px;
+  width: 140px;
+  height: 140px;
+  transform: rotate(180deg);
+}
+
+/* FLORALNA BELKA W CYTACIE EDITORIALNYM */
+.quote-botanical-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ukoi-sage, #73947D);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
 .sage-double-dash {

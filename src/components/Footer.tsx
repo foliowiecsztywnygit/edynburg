@@ -1,4 +1,5 @@
 import React from 'react';
+import { BotanicalDivider } from './BotanicalDivider';
 import { Language, translations } from '../translations';
 
 interface FooterProps {
@@ -109,6 +110,10 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </ul>
           </div>
 
+        </div>
+
+        <div style={{ margin: '36px auto 28px', maxWidth: '300px' }}>
+          <BotanicalDivider accentColor="rgba(115, 148, 125, 0.45)" />
         </div>
 
         <div className="footer-bottom-line">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BookingBar } from '../components/BookingBar';
 import { PhotoGallery } from '../components/PhotoGallery';
 import { HeroSlider } from '../components/HeroSlider';
+import { BotanicalDivider } from '../components/BotanicalDivider';
 import { Language, translations } from '../translations';
 
 interface HomeProps {
@@ -49,7 +50,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         {/* HERO CONTENT */}
         <div className="container hero-center-box">
           
-          <div className="sage-accent-line"></div>
+          <BotanicalDivider />
 
           <div style={{ 
             display: 'inline-flex', 
@@ -64,7 +65,9 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             letterSpacing: '0.05em',
             marginBottom: '18px' 
           }}>
-            {t.hero.badge}
+            <span style={{ fontSize: '0.9rem' }}>🌿</span>
+            <span>{t.hero.badge}</span>
+            <span style={{ fontSize: '0.9rem' }}>🌿</span>
           </div>
 
           <h1 className="hero-heading">
@@ -114,7 +117,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       <section className="ukoi-section text-center" id="about">
         <div className="container">
           
-          <div className="sage-accent-line"></div>
+          <BotanicalDivider />
           <div className="center-buttons-row">
             <button 
               type="button" 
@@ -172,7 +175,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
                   alt={t.highlights.cards[2].title} 
                   className="editorial-img" 
                 />
-                <div className="photo-label-tag">{t.highlights.cards[2].tag}</div>
+                <div className="photo-label-tag">🌸 {t.highlights.cards[2].tag}</div>
               </div>
               <p className="photo-card-caption">{t.highlights.cards[2].desc}</p>
             </div>
@@ -192,6 +195,11 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
           </div>
 
           <div className="editorial-quote-block">
+            <div className="quote-botanical-badge">
+              <span>🌿</span>
+              <span>Scottish Botanical Sanctuary</span>
+              <span>🌿</span>
+            </div>
             <p className="quote-line-lead">{t.spacesSection.quoteLead}</p>
             <p className="quote-line">{t.spacesSection.quoteLine1}</p>
             <p className="quote-line">{t.spacesSection.quoteLine2}</p>
@@ -203,10 +211,19 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       </section>
 
       {/* 3. LAYOUT & SPACES */}
-      <section className="ukoi-section bg-subtle" id="spaces">
-        <div className="container">
+      <section className="ukoi-section bg-subtle botanical-watermark-wrapper" id="spaces">
+        {/* Subtle decorative leaf watermarks */}
+        <svg className="botanical-watermark top-left" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+          <path d="M50 15 C55 35 75 45 85 50 C65 55 55 75 50 85 C45 65 25 55 15 50 C35 45 45 25 50 15 Z" opacity="0.6"/>
+        </svg>
+        <svg className="botanical-watermark bottom-right" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+          <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
+          <path d="M50 15 C55 35 75 45 85 50 C65 55 55 75 50 85 C45 65 25 55 15 50 C35 45 45 25 50 15 Z" opacity="0.6"/>
+        </svg>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="gallery-section-intro text-center">
-            <div className="sage-accent-line"></div>
+            <BotanicalDivider />
             <h2 className="section-title">{t.spacesSection.title}</h2>
             <p className="section-editorial-text">{t.spacesSection.subtitle}</p>
           </div>
@@ -267,7 +284,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         <div className="container editorial-narrow-container">
           
           <div className="text-center" style={{ marginBottom: '40px' }}>
-            <div className="sage-accent-line"></div>
+            <BotanicalDivider />
             <h2 className="section-title">{t.amenitiesSection.title}</h2>
             <p className="section-editorial-text">{t.amenitiesSection.subtitle}</p>
           </div>
@@ -308,7 +325,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         <div className="container">
           
           <div className="text-center" style={{ marginBottom: '40px' }}>
-            <div className="sage-accent-line"></div>
+            <BotanicalDivider />
             <h2 className="section-title">{t.locationSection.title}</h2>
             <p className="section-editorial-text">{t.locationSection.subtitle}</p>
           </div>
@@ -414,7 +431,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       <section className="ukoi-section" id="snowsports">
         <div className="container">
           <div className="text-center" style={{ maxWidth: '850px', margin: '0 auto 40px' }}>
-            <div className="sage-accent-line"></div>
+            <BotanicalDivider />
             <span style={{ 
               backgroundColor: 'var(--ukoi-sage-light, #EBF2ED)', 
               color: 'var(--ukoi-sage, #73947D)', 
@@ -536,7 +553,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       <section className="ukoi-section bg-subtle" id="rules-faq">
         <div className="container editorial-narrow-container">
           <div className="text-center">
-            <div className="sage-accent-line"></div>
+            <BotanicalDivider />
             <h2 className="section-title">{t.rulesFaqSection.title}</h2>
             <p className="section-editorial-text">{t.rulesFaqSection.subtitle}</p>
           </div>
@@ -600,7 +617,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       {/* 12. ONLINE BOOKING WIDGET 1:1 */}
       <section className="booking-system-wrapper" id="booking">
         <div className="container text-center">
-          <div className="sage-accent-line"></div>
+          <BotanicalDivider />
           <h2 className="section-title">{t.bookingBar.modalTitle}</h2>
           <p className="section-editorial-text">{t.bookingBar.modalSubtitle}</p>
 
