@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { BookingBar } from '../components/BookingBar';
 import { PhotoGallery } from '../components/PhotoGallery';
+import { HeroSlider } from '../components/HeroSlider';
+import { Language, translations } from '../translations';
 
 interface HomeProps {
-  onOpenBooking?: (data?: { checkIn?: string; checkOut?: string; property?: string }) => void;
+  lang: Language;
+  onOpenBooking?: (data?: { checkIn?: string; checkOut?: string; guests?: string }) => void;
 }
 
-export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
-  // Stan FAQ
+export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const t = translations[lang];
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const handleBookingTrigger = (e?: React.MouseEvent) => {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
+  const handleBookingTrigger = (bookingData?: { checkIn?: string; checkOut?: string; guests?: string }) => {
     if (onOpenBooking) {
-      onOpenBooking();
+      onOpenBooking(bookingData);
     } else {
-      window.dispatchEvent(new CustomEvent('mlynowka:openBooking', {
-        detail: { property: 'Młynówka — Domek przy Młynie' }
-      }));
+      window.dispatchEvent(new CustomEvent('edinburgh:openBooking', { detail: bookingData }));
     }
   };
+
+  const whatsappMessage = lang === 'pl'
+    ? 'Dzień dobry, piszę ze strony The Edinburgh Garden House z zapytaniem o wolny termin.'
+    : lang === 'de'
+    ? 'Hallo, ich kontaktiere Sie über die Website The Edinburgh Garden House bezüglich einer Buchung.'
+    : lang === 'fr'
+    ? 'Bonjour, je vous contacte depuis le site The Edinburgh Garden House pour une demande de réservation.'
+    : 'Hello Jacek, I am inquiring about booking availability for The Edinburgh Garden House.';
 
   return (
     <div className="home-page">
@@ -34,419 +39,578 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
       {/* 1. HERO SECTION */}
       <section className="ukoi-hero" id="hero">
         
-        {/* TŁO HERO: PANORAMA (TŁOHERO.JPG) Z BŁĘKITNYM GRADIENTEM NIEBA */}
+        {/* HERO BANNER SLIDESHOW (CHANGING PHOTOS WITH CROSSFADE) */}
         <div className="hero-banner-wrapper">
           <div className="container hero-banner-container">
-            <div className="hero-cover-banner">
-              <img 
-                src="/mlynowka/tlohero.jpg" 
-                alt="Młynówka Domek przy Młynie — widok na ogród, potok i Pieniny" 
-                className="hero-cover-image" 
-              />
-              <div className="hero-cover-gradient-overlay" />
-            </div>
+            <HeroSlider lang={lang} />
           </div>
         </div>
 
-        {/* ORYGINALNA ZAWARTOŚĆ HERO SPRZED ZMIAN */}
+        {/* HERO CONTENT */}
         <div className="container hero-center-box">
           
           <div className="sage-accent-line"></div>
 
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '8px', 
+            backgroundColor: 'rgba(235, 242, 237, 0.95)', 
+            padding: '6px 16px', 
+            borderRadius: '20px', 
+            color: 'var(--ukoi-sage, #73947D)', 
+            fontSize: '0.82rem', 
+            fontWeight: 700, 
+            letterSpacing: '0.05em',
+            marginBottom: '18px' 
+          }}>
+            {t.hero.badge}
+          </div>
+
           <h1 className="hero-heading">
-            Młynówka. Odpocznij w cieniu zabytkowego młyna i gór Pienin.
+            {t.hero.title}
           </h1>
 
           <p className="hero-lead">
-            Krościenko nad Dunajcem. Drewniany całoroczny domek w stylu nowoczesnej stodoły — 70 m² prywatnej przestrzeni na wyłączność oraz ponad hektar zielonego ogrodu z własną, szumiącą młynówką.
+            {t.hero.lead}
           </p>
 
-          <nav className="hero-pipe-menu" aria-label="Nawigacja sekcji">
-            <a href="#o-nas">O MŁYNÓWCE</a>
+          <nav className="hero-pipe-menu" aria-label="Section shortcuts">
+            <a href="#about">{t.nav.about}</a>
             <span className="pipe">|</span>
-            <a href="#wnetrze-i-ogrod">WNĘTRZE I OGRÓD</a>
+            <a href="#spaces">{t.nav.spaces}</a>
             <span className="pipe">|</span>
-            <a href="#udogodnienia">UDOGODNIENIA</a>
+            <a href="#amenities">{t.nav.amenities}</a>
             <span className="pipe">|</span>
-            <a href="#galeria">GALERIA ZDJĘĆ</a>
+            <a href="#gallery">{t.nav.gallery}</a>
             <span className="pipe">|</span>
-            <a href="#okolica">OKOLICA I SZLAKI</a>
+            <a href="#location">{t.nav.location}</a>
             <span className="pipe">|</span>
-            <a href="#opinie">OPINIE GOŚCI</a>
+            <a href="#snowsports">{t.nav.snowsports}</a>
             <span className="pipe">|</span>
-            <Link to="/blog">BLOG</Link>
+            <a href="#reviews">{t.nav.reviews}</a>
             <span className="pipe">|</span>
-            <a href="#zasady-faq">ZASADY I FAQ</a>
+            <a href="#rules-faq">{t.nav.faq}</a>
             <span className="pipe">|</span>
-            <a href="#kontakt">KONTAKT</a>
+            <a href="#contact">{t.nav.contact}</a>
           </nav>
 
           <p className="hero-motto">
-            Podaruj sobie ukojenie — dokładnie takie, jakiego teraz potrzebujesz.
+            {t.hero.motto}
           </p>
 
-          {/* WIDŻET WYSZUKIWANIA 1:1 Z OBRAZKA UŻYTKOWNIKA Z INTERAKTYWNYM KALENDARZEM */}
-          <BookingBar onOpenBooking={handleBookingTrigger} />
+          {/* INTERACTIVE BOOKING BAR */}
+          <BookingBar lang={lang} onOpenBooking={handleBookingTrigger} />
 
           <div className="hero-rating-subtle">
-            <span className="rating-val">9,8 / 10</span>
-            <span className="rating-desc">Wyjątkowy (43 autentyczne opinie gości)</span>
+            <span className="rating-val">4.94 ★</span>
+            <span className="rating-desc">{t.hero.ratingSnippet}</span>
           </div>
 
         </div>
       </section>
 
-      {/* 2. O NAS & 4 PIONOWE FOTOGRAFIE */}
-      <section className="ukoi-section text-center" id="o-nas">
+      {/* 2. ABOUT & 4 EDITORIAL PHOTO CARDS */}
+      <section className="ukoi-section text-center" id="about">
         <div className="container">
           
           <div className="sage-accent-line"></div>
           <div className="center-buttons-row">
-            <button type="button" className="btn-sage" onClick={handleBookingTrigger} data-booking-trigger="true">
-              ZAREZERWUJ TERMIN
+            <button 
+              type="button" 
+              className="btn-sage" 
+              onClick={() => handleBookingTrigger()}
+            >
+              {t.nav.bookNow}
             </button>
           </div>
 
           <h2 className="section-title">
-            Całoroczny domek do wynajęcia w ciszy Pienin.
+            {t.highlights.title}
           </h2>
           
           <div className="section-subtitle-link">
-            <a href="#okolica">SPRAWDŹ NASZĄ LOKALIZACJĘ: KROŚCIENKO NAD DUNAJCEM</a>
+            <a href="#location">{t.highlights.subtitle}</a>
           </div>
 
           <p className="section-editorial-text">
-            Młynówka to komfortowe miejsce dla tych, którzy kochają naturę — zarówno jeśli w chłodniejsze dni szukasz ukojenia w ciepłym drewnianym wnętrzu z widokiem na góry, jak i dla tych, którzy chodzą na spacery w każdą pogodę. Młynówka to miejsce, w którym <strong>zadbasz o swoje wnętrze</strong> i <strong>prawdziwy relaks</strong>.
+            {t.spacesSection.lead}
           </p>
 
           <div className="four-photos-grid">
+            {/* Card 1: Living Room */}
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
-                <img src="/mlynowka/654540753.jpg" alt="Salon i jadalnia w Młynówce" className="editorial-img" />
-                <div className="photo-label-tag">70 m² na wyłączność</div>
+                <img 
+                  src="/zdjecia/living_room_hd.jpg" 
+                  alt={t.highlights.cards[0].title} 
+                  className="editorial-img" 
+                />
+                <div className="photo-label-tag">{t.highlights.cards[0].tag}</div>
               </div>
-              <p className="photo-card-caption">Drewniany, wolnostojący domek w stylu nowoczesnej stodoły.</p>
+              <p className="photo-card-caption">{t.highlights.cards[0].desc}</p>
             </div>
 
+            {/* Card 2: Driveway */}
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
-                <img src="/mlynowka/856833055.jpg" alt="Potok młynówki płynący przez posesję" className="editorial-img" />
-                <div className="photo-label-tag">Krystaliczny potok</div>
+                <img 
+                  src="/zdjecia/driveway_hd.jpg" 
+                  alt={t.highlights.cards[1].title} 
+                  className="editorial-img" 
+                />
+                <div className="photo-label-tag">{t.highlights.cards[1].tag}</div>
               </div>
-              <p className="photo-card-caption">Ponad hektar zielonego ogrodu z własnym szumiącym potokiem.</p>
+              <p className="photo-card-caption">{t.highlights.cards[1].desc}</p>
             </div>
 
+            {/* Card 3: Garden */}
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
-                <img src="/mlynowka/413564841.jpg" alt="Sypialnia z widokiem na góry" className="editorial-img" />
-                <div className="photo-label-tag">Łóżka &gt; 2 m długości</div>
+                <img 
+                  src="/zdjecia/garden_patio_hd.jpg" 
+                  alt={t.highlights.cards[2].title} 
+                  className="editorial-img" 
+                />
+                <div className="photo-label-tag">{t.highlights.cards[2].tag}</div>
               </div>
-              <p className="photo-card-caption">2 niezależne sypialnie na piętrze dla 6 gości.</p>
+              <p className="photo-card-caption">{t.highlights.cards[2].desc}</p>
             </div>
 
+            {/* Card 4: King Bedroom (Master Bedroom in HD) */}
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
-                <img src="/mlynowka/856800620.jpg" alt="Biesiadne palenisko ogniskowe" className="editorial-img" />
-                <div className="photo-label-tag">Ognisko & Grill</div>
+                <img 
+                  src="/zdjecia/bedroom_pink_master_hd.jpg" 
+                  alt={t.highlights.cards[3].title} 
+                  className="editorial-img" 
+                />
+                <div className="photo-label-tag">{t.highlights.cards[3].tag}</div>
               </div>
-              <p className="photo-card-caption">Tradycyjny krąg ogniskowy i prywatny grill pod domkiem.</p>
+              <p className="photo-card-caption">{t.highlights.cards[3].desc}</p>
             </div>
           </div>
 
           <div className="editorial-quote-block">
-            <p className="quote-line-lead">Hotelowy standard w sercu pienińskiej natury.</p>
-            <p className="quote-line">Każdy detal zaprojektowaliśmy tak, aby sprzyjał odpoczynkowi.</p>
-            <p className="quote-line">Domek to nowoczesne drewniane wnętrze z wielkimi oknami i widokiem na spokój.</p>
-            <p className="quote-line">Poranna kawa przy śpiewie ptaków. Wieczorne rozmowy przy świetle księżyca i szumie potoku.</p>
-            <p className="quote-line-accent">Zamiast zgiełku miasta — kojący kontakt z przyrodą i zabytkowy Młyn.</p>
+            <p className="quote-line-lead">{t.spacesSection.quoteLead}</p>
+            <p className="quote-line">{t.spacesSection.quoteLine1}</p>
+            <p className="quote-line">{t.spacesSection.quoteLine2}</p>
+            <p className="quote-line">{t.spacesSection.quoteLine3}</p>
+            <p className="quote-line-accent">{t.spacesSection.quoteAccent}</p>
           </div>
 
         </div>
       </section>
 
-      {/* 3. GALERIA 4x3 - REALNE ZDJĘCIA */}
-      <section className="ukoi-gallery-section" id="wnetrze-i-ogrod">
+      {/* 3. LAYOUT & SPACES */}
+      <section className="ukoi-section bg-subtle" id="spaces">
         <div className="container">
           <div className="gallery-section-intro text-center">
             <div className="sage-accent-line"></div>
-            <h2 className="section-title">Przestrzeń Młynówki w kadrach</h2>
-            <p className="section-editorial-text">
-              70 m² wnętrza, taras słoneczny, plac zabaw, rzeka i zabytkowy Młyn.
-            </p>
+            <h2 className="section-title">{t.spacesSection.title}</h2>
+            <p className="section-editorial-text">{t.spacesSection.subtitle}</p>
           </div>
 
-          <div className="ukoi-photos-matrix">
-            <div className="matrix-item"><img src="/mlynowka/857438807.jpg" alt="Domek Młynówka" /><span className="matrix-caption">Domek Młynówka</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856800664.jpg" alt="Taras i leżaki" /><span className="matrix-caption">Taras słoneczny</span></div>
-            <div className="matrix-item"><img src="/mlynowka/413564841.jpg" alt="Sypialnia główna" /><span className="matrix-caption">Sypialnia główna</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856800644.jpg" alt="Prywatny grill" /><span className="matrix-caption">Prywatny grill</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856800575.jpg" alt="Kuchnia i jadalnia" /><span className="matrix-caption">Kuchnia & jadalnia</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856800548.jpg" alt="Odważniki młyńskie" /><span className="matrix-caption">Klimatyczne detale</span></div>
-            <div className="matrix-item"><img src="/mlynowka/857382329.jpg" alt="Plac zabaw" /><span className="matrix-caption">Plac zabaw (&gt;1 ha)</span></div>
-            <div className="matrix-item"><img src="/mlynowka/418595368.jpg" alt="Zabytkowy Młyn" /><span className="matrix-caption">Zabytkowy Młyn</span></div>
-            <div className="matrix-item"><img src="/mlynowka/857284326.jpg" alt="Nowoczesna łazienka" /><span className="matrix-caption">Wygodna łazienka</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856833055.jpg" alt="Szum potoku Młynówka" /><span className="matrix-caption">Szum młynówki</span></div>
-            <div className="matrix-item"><img src="/mlynowka/413551315.jpg" alt="Staw z kaczkami" /><span className="matrix-caption">Staw & Pieniny</span></div>
-            <div className="matrix-item"><img src="/mlynowka/856800620.jpg" alt="Miejsce na ognisko" /><span className="matrix-caption">Miejsce na ognisko</span></div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '24px',
+            marginTop: '36px'
+          }}>
+            {t.spacesSection.spaces.map((sp, idx) => (
+              <div 
+                key={idx}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  padding: '28px 24px',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                  border: '1px solid var(--ukoi-border, #E0E2E4)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ 
+                    width: '36px', 
+                    height: '36px', 
+                    borderRadius: '50%', 
+                    backgroundColor: 'var(--ukoi-sage-light, #EBF2ED)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    color: 'var(--ukoi-sage, #73947D)',
+                    fontWeight: 700
+                  }}>
+                    {idx + 1}
+                  </span>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--ukoi-text, #1F1F1D)' }}>
+                    {sp.title}
+                  </h3>
+                </div>
+                <p style={{ color: 'var(--ukoi-text-muted, #64645E)', fontSize: '0.94rem', lineHeight: '1.6' }}>
+                  {sp.desc}
+                </p>
+              </div>
+            ))}
           </div>
+
         </div>
       </section>
 
-      {/* 4. REDAKCYJNE Q&A I UDOGODNIENIA */}
-      <section className="ukoi-editorial-qa" id="udogodnienia">
+      {/* 4. COMPLETE PHOTO GALLERY WITH LIGHTBOX */}
+      <PhotoGallery lang={lang} />
+
+      {/* 5. AMENITIES MATRIX */}
+      <section className="ukoi-editorial-qa" id="amenities">
         <div className="container editorial-narrow-container">
           
-          <div className="qa-block">
-            <h3 className="qa-title">Czym jest Młynówka?</h3>
-            <p className="qa-text">
-              Młynówka to starannie zaprojektowany, nowy drewniany domek w stylu alpejskim, w którym <strong>mniej znaczy więcej</strong>. Położony na ponad hektarowej, zielonej działce z przepływającą przez ogród historyczną młynówką, pozwala chłonąć pienińską naturę bez wychodzenia na zewnątrz.
-            </p>
-            <ul className="qa-bullets">
-              <li><strong>Cały wolnostojący budynek 70 m² na wyłączność</strong> z prywatnym wejściem, wygłuszeniem i wydajnym ogrzewaniem całorocznym.</li>
-              <li><strong>2 niezależne sypialnie na piętrze</strong> z bardzo długimi łóżkami (&gt;2 m), świeżą pościelą i gniazdkami przy łóżkach.</li>
-              <li><strong>Salon z narożną sofą rozkładaną</strong> oraz biurkiem do pracy zdalnej. Łącznie do 6 wygodnych miejsc do spania.</li>
-              <li><strong>W pełni wyposażona kuchnia ze strefą jadalnianą:</strong> lodówka, płyta, mikrofala, toster, naczynia i krzesełko do karmienia.</li>
-              <li><strong>Prywatna, wygodna łazienka</strong> z prysznicem, kompletem ręczników, suszarką do włosów i suszarką do odzieży.</li>
-              <li><strong>Superszybkie, stabilne Wi-Fi 295 Mb/s</strong> przetestowane pod kątem streamingu 4K (Netflix) i bezproblemowych wideorozmów.</li>
-            </ul>
-          </div>
-
-          <div className="qa-block">
-            <h3 className="qa-title">Dodatkowo w ogrodzie:</h3>
-            <p className="qa-text">
-              Nasi goście mają do dyspozycji <strong>słoneczny taras wypoczynkowy z leżakami i meblami ogrodowymi</strong>, prywatny grill bezpośrednio pod domkiem, tradycyjne, bezpieczne <strong>kamienne miejsce na ognisko z ławami</strong> oraz rozbudowany <strong>plac zabaw dla dzieci</strong> (huśtawki, zjeżdżalnia, duża trampolina, piaskownica). Na miejscu czeka także sprzęt do badmintona, gry planszowe i książki.
-            </p>
-          </div>
-
-          <div className="qa-block" id="okolica">
-            <h3 className="qa-title">Gdzie znajdziesz Młynówkę?</h3>
-            <p className="qa-text">
-              Domek położony jest w <strong>Krościenku nad Dunajcem przy ul. Grotowskiego 14</strong> — zaledwie 10 minut spokojnego spaceru (600 m) dzieli Cię od Rynku, sklepów i lokalnych restauracji, a market spożywczy znajduje się jeszcze bliżej.
-            </p>
-            <p className="qa-text">
-              To unikalny punkt na mapie: jesteś w centrum, a jednak w absolutnej enklawie ciszy. Wprost spod domku wychodzisz na <strong>żółty szlak turystyczny na Trzy Korony, Sokolicę i Zamkową Górę</strong>, a wzdłuż rzeki biegnie słynna trasa rowerowa do <strong>Szczawnicy (5 km)</strong> i na <strong>Czerwony Klasztor</strong> na Słowacji. Co więcej: licencjonowany przewoźnik na spływ Dunajcem <strong>odbiera naszych gości spod samej bramy domku</strong>.
-            </p>
-          </div>
-
-          <div className="qa-block">
-            <h3 className="qa-title">Jak spędzisz czas w Młynówce?</h3>
-            <p className="qa-text">W Młynówce nie musisz robić nic — wystarczy, że będziesz. Możesz:</p>
-            <ul className="qa-bullets">
-              <li>Patrzeć przez okna na zielony ogród, rzekę lub szczyty Pienin.</li>
-              <li>Rozkoszować się spokojnymi porankami ze świeżą kawą na tarasie.</li>
-              <li>Spacerować po okolicy, zdobywać Trzy Korony lub czytać książkę przy szumie młynówki.</li>
-              <li>Spędzać wieczory przy ognisku i grillu, z dala od hałasu i miejskiego pośpiechu.</li>
-              <li>Zwiedzić zabytkowy Młyn w towarzystwie gospodarzy i posłuchać dawnych anegdot.</li>
-              <li>Regenerować siły, by z nową energią wrócić do codziennych obowiązków.</li>
-            </ul>
-            <p className="qa-text-center">To miejsce, gdzie znajdziesz ciszę, harmonię i przestrzeń do bycia w pełni sobą.</p>
-          </div>
-
-          <div className="qa-block">
-            <h3 className="qa-title">Co wyróżnia Młynówkę?</h3>
-            <p className="qa-text">
-              <strong>Średniowieczny rodowód i tradycja:</strong> kultywujemy dziedzictwo zapoczątkowane przez naszych przodków w pierwszej stacji PTTK w Krościenku nad Dunajcem. Część historii udokumentowano na obrazach wewnątrz domku.<br />
-              <strong>Komfort dla alergików:</strong> wnętrza hipoalergiczne, zakaz palenia tytoniu i brak obecności zwierząt gwarantują krystaliczną czystość powietrza.<br />
-              <strong>Ocena grupowa 10,0 / 10:</strong> idealna konfiguracja dla rodzin z dziećmi i grup do 6 osób.<br />
-              <strong>Światłowód 295 Mb/s:</strong> idealne warunki na tzw. workation z widokiem na góry.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. KOMPLETNA RESPONSYWNA GALERIA ZE WSZYSTKIMI 42 ZDJĘCIAMI I LIGHTBOXEM */}
-      <PhotoGallery />
-
-      {/* 6. ZASADY POBYTU I FAQ */}
-      <section className="ukoi-section bg-subtle" id="zasady-faq">
-        <div className="container editorial-narrow-container">
-          <div className="text-center">
+          <div className="text-center" style={{ marginBottom: '40px' }}>
             <div className="sage-accent-line"></div>
-            <h2 className="section-title">Zasady pobytu oraz FAQ</h2>
-            <p className="section-editorial-text">Jasne i przejrzyste zasady gwarantujące beztroski wypoczynek.</p>
+            <h2 className="section-title">{t.amenitiesSection.title}</h2>
+            <p className="section-editorial-text">{t.amenitiesSection.subtitle}</p>
           </div>
 
-          <div className="rules-clean-table">
-            <div className="rule-row">
-              <span className="rule-title">Zameldowanie:</span>
-              <span className="rule-desc">Od 16:00 do 20:00 (prosimy o uprzednią informację o planowanej godzinie przybycia).</span>
+          {t.amenitiesSection.groups.map((group, gIdx) => (
+            <div className="qa-block" key={gIdx} style={{ marginBottom: '32px' }}>
+              <h3 className="qa-title" style={{ color: 'var(--ukoi-sage, #73947D)' }}>
+                {group.category}
+              </h3>
+              <ul className="qa-bullets" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '10px' }}>
+                {group.items.map((item, iIdx) => (
+                  <li key={iIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ color: 'var(--ukoi-sage, #73947D)', fontWeight: 700 }}>✓</span>
+                    <span>{item.name}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="rule-row">
-              <span className="rule-title">Wymeldowanie:</span>
-              <span className="rule-desc">Od 07:00 do 10:00. Ekspresowe wymeldowanie.</span>
-            </div>
-            <div className="rule-row">
-              <span className="rule-title">Dzieci i dostawki:</span>
-              <span className="rule-desc">Dzieci w każdym wieku mile widziane. Bezpłatne łóżeczko dziecięce (do 1 roku) oraz dodatkowe łóżka na życzenie.</span>
-            </div>
-            <div className="rule-row">
-              <span className="rule-title">Zwierzęta i wiek:</span>
-              <span className="rule-desc">Brak ograniczeń wiekowych przy zameldowaniu. Ze względu na gości ze skłonnością do alergii zwierzęta nie są akceptowane.</span>
-            </div>
-            <div className="rule-row">
-              <span className="rule-title">Kultura pobytu:</span>
-              <span className="rule-desc">Całkowity zakaz palenia w domku. Cisza nocna obowiązuje w godzinach 23:00 – 08:00.</span>
-            </div>
-            <div className="rule-row">
-              <span className="rule-title">Płatności:</span>
-              <span className="rule-desc">Karty płatnicze (Visa, Mastercard). Gotówka nie jest akceptowana. Wystawiamy faktury.</span>
-            </div>
+          ))}
+
+          <div style={{
+            padding: '16px 20px',
+            backgroundColor: '#FAFAF8',
+            border: '1px dashed var(--ukoi-border, #E0E2E4)',
+            borderRadius: '4px',
+            textAlign: 'center',
+            fontSize: '0.88rem',
+            color: 'var(--ukoi-text-muted, #64645E)'
+          }}>
+            {t.amenitiesSection.notIncludedTitle}
           </div>
 
-          <div className="clean-faq-list">
-            <div className={`faq-item ${activeFaq === 0 ? 'active' : ''}`}>
-              <button type="button" className="faq-trigger" onClick={() => toggleFaq(0)}>
-                <span>Czy łącze Wi-Fi poradzi sobie z pracą zdalną i streamingiem?</span>
-                <span className="faq-sign">+</span>
-              </button>
-              {activeFaq === 0 && (
-                <div className="faq-answer" style={{ maxHeight: '200px' }}>
-                  <p>Tak. Domek wyposażono w przetestowane łącze światłowodowe 295 Mb/s. Umożliwia ono równoległy streaming filmów 4K i stabilne wideorozmowy.</p>
-                </div>
-              )}
+        </div>
+      </section>
+
+      {/* 6. LOCATION, NEIGHBORHOOD & DIRECT BUSES */}
+      <section className="ukoi-section bg-subtle" id="location">
+        <div className="container">
+          
+          <div className="text-center" style={{ marginBottom: '40px' }}>
+            <div className="sage-accent-line"></div>
+            <h2 className="section-title">{t.locationSection.title}</h2>
+            <p className="section-editorial-text">{t.locationSection.subtitle}</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px', marginBottom: '40px' }}>
+            
+            {/* Transit */}
+            <div style={{ backgroundColor: '#fff', padding: '32px 28px', borderRadius: '6px', border: '1px solid #E0E2E4' }}>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--ukoi-sage, #73947D)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>🚌</span> {t.locationSection.transitTitle}
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {t.locationSection.transitItems.map((item, idx) => (
+                  <div key={idx}>
+                    <h4 style={{ fontSize: '0.98rem', fontWeight: 600, marginBottom: '4px' }}>{item.title}</h4>
+                    <p style={{ fontSize: '0.9rem', color: '#64645E' }}>{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className={`faq-item ${activeFaq === 1 ? 'active' : ''}`}>
-              <button type="button" className="faq-trigger" onClick={() => toggleFaq(1)}>
-                <span>Gdzie parkujemy samochód?</span>
-                <span className="faq-sign">+</span>
-              </button>
-              {activeFaq === 1 && (
-                <div className="faq-answer" style={{ maxHeight: '200px' }}>
-                  <p>Na terenie posesji dostępny jest bezpłatny, bezpieczny prywatny parking dla gości domku bez konieczności rezerwacji.</p>
-                </div>
-              )}
+            {/* Neighborhood Shops */}
+            <div style={{ backgroundColor: '#fff', padding: '32px 28px', borderRadius: '6px', border: '1px solid #E0E2E4' }}>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--ukoi-sage, #73947D)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>🛒</span> {t.locationSection.neighborhoodTitle}
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {t.locationSection.neighborhoodItems.map((item, idx) => (
+                  <div key={idx}>
+                    <h4 style={{ fontSize: '0.98rem', fontWeight: 600, marginBottom: '4px' }}>{item.title}</h4>
+                    <p style={{ fontSize: '0.9rem', color: '#64645E' }}>{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className={`faq-item ${activeFaq === 2 ? 'active' : ''}`}>
-              <button type="button" className="faq-trigger" onClick={() => toggleFaq(2)}>
-                <span>Jak zorganizować spływ Dunajcem?</span>
-                <span className="faq-sign">+</span>
-              </button>
-              {activeFaq === 2 && (
-                <div className="faq-answer" style={{ maxHeight: '200px' }}>
-                  <p>Przewoźnik odbiera naszych gości bezpośrednio spod bramy domku, dzięki czemu nie musisz martwić się o logistykę ani parkowanie w Szczawnicy czy Sromowcach.</p>
-                </div>
-              )}
+            {/* Attractions */}
+            <div style={{ backgroundColor: '#fff', padding: '32px 28px', borderRadius: '6px', border: '1px solid #E0E2E4' }}>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '20px', color: 'var(--ukoi-sage, #73947D)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>🏰</span> {t.locationSection.attractionsTitle}
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {t.locationSection.attractionsItems.map((item, idx) => (
+                  <div key={idx}>
+                    <h4 style={{ fontSize: '0.98rem', fontWeight: 600, marginBottom: '4px' }}>{item.title}</h4>
+                    <p style={{ fontSize: '0.9rem', color: '#64645E' }}>{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className={`faq-item ${activeFaq === 3 ? 'active' : ''}`}>
-              <button type="button" className="faq-trigger" onClick={() => toggleFaq(3)}>
-                <span>Czy w domku jest ciepło poza sezonem letnim?</span>
-                <span className="faq-sign">+</span>
-              </button>
-              {activeFaq === 3 && (
-                <div className="faq-answer" style={{ maxHeight: '200px' }}>
-                  <p>Tak, domek jest w pełni całoroczny. Nowoczesne, wydajne ogrzewanie zapewnia idealny komfort termiczny także jesienią i zimą.</p>
-                </div>
-              )}
+          </div>
+
+          {/* Map Image and Link */}
+          <div style={{ 
+            backgroundColor: '#FFFFFF', 
+            borderRadius: '8px', 
+            overflow: 'hidden', 
+            border: '1px solid #E0E2E4',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            alignItems: 'center'
+          }}>
+            <div style={{ padding: '32px' }}>
+              <span style={{ 
+                fontSize: '0.8rem', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.08em', 
+                color: 'var(--ukoi-sage, #73947D)', 
+                fontWeight: 700 
+              }}>
+                Gilmerton · Edinburgh EH17
+              </span>
+              <h3 style={{ fontSize: '1.4rem', margin: '10px 0 16px', fontWeight: 600 }}>
+                Edinburgh, United Kingdom
+              </h3>
+              <p style={{ color: '#64645E', fontSize: '0.94rem', lineHeight: '1.7', marginBottom: '24px' }}>
+                Edinburgh Castle rises above volcanic crags, while the Royal Mile threads through historic streets, pubs, and festival-filled squares. Gilmerton provides a peaceful haven away from city noise while remaining effortlessly connected by direct bus.
+              </p>
+              <a 
+                href="https://maps.google.com/?q=Gilmerton,+Edinburgh+EH17,+UK" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-sage"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
+                <span>Google Maps →</span>
+              </a>
+            </div>
+            <div style={{ height: '100%', minHeight: '260px' }}>
+              <img 
+                src="/edinburgh/map_gilmerton.jpg" 
+                alt="Map of Gilmerton, Edinburgh EH17" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* 7. OCENY I OPINIE */}
-      <section className="ukoi-section" id="opinie">
+      {/* 7. NEARBY ADVENTURE: HILLEND SNOWSPORTS */}
+      <section className="ukoi-section" id="snowsports">
+        <div className="container">
+          <div className="text-center" style={{ maxWidth: '850px', margin: '0 auto 40px' }}>
+            <div className="sage-accent-line"></div>
+            <span style={{ 
+              backgroundColor: 'var(--ukoi-sage-light, #EBF2ED)', 
+              color: 'var(--ukoi-sage, #73947D)', 
+              padding: '6px 14px', 
+              borderRadius: '20px', 
+              fontSize: '0.8rem', 
+              fontWeight: 700, 
+              letterSpacing: '0.05em' 
+            }}>
+              {t.snowsportsSection.badge}
+            </span>
+            <h2 className="section-title" style={{ marginTop: '16px' }}>{t.snowsportsSection.title}</h2>
+            <p className="section-editorial-text">{t.snowsportsSection.subtitle}</p>
+            <p style={{ color: '#64645E', fontSize: '0.94rem', marginTop: '10px' }}>{t.snowsportsSection.desc}</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+            {t.snowsportsSection.features.map((feat, idx) => (
+              <div 
+                key={idx} 
+                style={{ 
+                  backgroundColor: '#FAFAF8', 
+                  padding: '28px 24px', 
+                  borderRadius: '6px', 
+                  border: '1px solid #E0E2E4' 
+                }}
+              >
+                <div style={{ fontSize: '1.8rem', marginBottom: '12px' }}>
+                  {idx === 0 ? '🎢' : idx === 1 ? '⛷️' : '🛟'}
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 600, marginBottom: '8px' }}>
+                  {feat.title}
+                </h3>
+                <p style={{ color: '#64645E', fontSize: '0.92rem', lineHeight: '1.6' }}>
+                  {feat.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ 
+            marginTop: '32px', 
+            padding: '20px 24px', 
+            borderRadius: '6px', 
+            backgroundColor: 'var(--ukoi-sage-light, #EBF2ED)', 
+            color: 'var(--ukoi-text, #1F1F1D)',
+            textAlign: 'center',
+            fontSize: '0.94rem',
+            lineHeight: '1.6'
+          }}>
+            🍻 <strong>{t.snowsportsSection.chillout}</strong>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      {/* 9. REVIEWS SECTION */}
+      <section className="ukoi-section" id="reviews">
         <div className="container">
           <div className="text-center">
-            <button type="button" className="btn-sage" onClick={handleBookingTrigger} data-booking-trigger="true">
-              ZAREZERWUJ POBYT
+            <button 
+              type="button" 
+              className="btn-sage" 
+              onClick={() => handleBookingTrigger()}
+            >
+              {t.nav.bookNow}
             </button>
           </div>
 
           <div className="reviews-split-layout">
             <div className="reviews-visual-col">
               <div className="reviews-img-wrapper" style={{ '--aspect': '1/1' } as React.CSSProperties}>
-                <img src="/mlynowka/857438807.jpg" alt="Domek Młynówka" className="editorial-img" />
+                <img 
+                  src="/zdjecia/bedroom2_yellow_hd.jpg" 
+                  alt="The Edinburgh Garden House - Guest Suite" 
+                  className="editorial-img" 
+                />
                 <div className="score-stamp">
-                  <span className="stamp-rating">9,8</span>
-                  <span className="stamp-label">WYJĄTKOWY</span>
-                  <span className="stamp-sub">43 autentyczne opinie</span>
+                  <span className="stamp-rating">{t.reviewsSection.ratingValue}</span>
+                  <span className="stamp-label">EXCEPTIONAL</span>
+                  <span className="stamp-sub">{t.reviewsSection.reviewsCountText}</span>
                 </div>
               </div>
             </div>
 
             <div className="reviews-text-col">
               <div className="sage-double-dash"><span></span><span></span></div>
-              <h2 className="reviews-heading">Opinie o Młynówce</h2>
+              <h2 className="reviews-heading">{t.reviewsSection.title}</h2>
               <p className="reviews-intro-p">
-                Młynówka została oceniona przez gości na <strong>9,8 / 10 (Wyjątkowy)</strong>, uzyskując maksymalną notę <strong>10,0 / 10 za personel i gościnność</strong> oraz <strong>10,0 / 10 jako lokalizacja dla grup</strong>.
+                {t.reviewsSection.subtitle}
               </p>
 
               <div className="scores-compact-list">
-                <div className="score-line"><span>Personel i pomoc gospodarzy:</span> <strong>10,0 / 10</strong></div>
-                <div className="score-line"><span>Lokalizacja i cisza:</span> <strong>9,9 / 10</strong></div>
-                <div className="score-line"><span>Czystość i stan obiektu:</span> <strong>9,9 / 10</strong></div>
-                <div className="score-line"><span>Stosunek jakości do ceny:</span> <strong>9,8 / 10</strong></div>
-                <div className="score-line"><span>Udogodnienia i wyposażenie:</span> <strong>9,7 / 10</strong></div>
-                <div className="score-line"><span>Komfort snu:</span> <strong>9,6 / 10</strong></div>
+                {t.reviewsSection.categories.map((cat, idx) => (
+                  <div className="score-line" key={idx}>
+                    <span>{cat.label}:</span> <strong>{cat.score}</strong>
+                  </div>
+                ))}
               </div>
 
               <div className="reviews-cards-stack">
-                <blockquote className="guest-review-item">
-                  <p className="review-quote">
-                    „Trafiliśmy w wyjątkowe miejsce. Piękny domek położony w centrum, a jednak na uboczu. Po całym roku pracy szczególnie cenimy sobie prywatność, szukamy miejsc, w których możemy zapomnieć o zgiełku i pracy. Młynówka spełniła wszystkie nasze oczekiwania.”
-                  </p>
-                  <cite className="review-author">— Anna (Polska)</cite>
-                </blockquote>
-
-                <blockquote className="guest-review-item">
-                  <p className="review-quote">
-                    „Bardzo przyjemna lokalizacja — blisko do centrum Krościenka oraz sklepów. Duży ogródek z bardzo fajnym miejscem na ognisko i grilla. Wygodna łazienka.”
-                  </p>
-                  <cite className="review-author">— Jolanta (Polska)</cite>
-                </blockquote>
-
-                <blockquote className="guest-review-item">
-                  <p className="review-quote">
-                    „Piękne miejsce, bardzo mili i pomocni właściciele. W domku duża przestrzeń, wszystkie potrzebne sprzęty, a poza tym grill i ognisko. Wspaniały rodzinny pobyt. Szczerze polecamy.”
-                  </p>
-                  <cite className="review-author">— Łucja (Polska)</cite>
-                </blockquote>
+                {t.reviewsSection.reviewsList.map((rev, idx) => (
+                  <blockquote className="guest-review-item" key={idx}>
+                    <p className="review-quote">
+                      „{rev.text}”
+                    </p>
+                    <cite className="review-author">— {rev.author} ({rev.meta})</cite>
+                  </blockquote>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. BANER SZAŁWIOWY */}
-      <section className="sage-banner-section" id="kontakt">
+      {/* 10. HOUSE RULES & FAQ */}
+      <section className="ukoi-section bg-subtle" id="rules-faq">
+        <div className="container editorial-narrow-container">
+          <div className="text-center">
+            <div className="sage-accent-line"></div>
+            <h2 className="section-title">{t.rulesFaqSection.title}</h2>
+            <p className="section-editorial-text">{t.rulesFaqSection.subtitle}</p>
+          </div>
+
+          {/* Rules Table */}
+          <div className="rules-clean-table">
+            {t.rulesFaqSection.rules.map((rule, idx) => (
+              <div className="rule-row" key={idx}>
+                <span className="rule-title">{rule.title}</span>
+                <span className="rule-desc">{rule.desc}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* FAQ Accordion */}
+          <div className="clean-faq-list" style={{ marginTop: '40px' }}>
+            {t.rulesFaqSection.faqs.map((faq, idx) => (
+              <div className={`faq-item ${activeFaq === idx ? 'active' : ''}`} key={idx}>
+                <button type="button" className="faq-trigger" onClick={() => toggleFaq(idx)}>
+                  <span>{faq.q}</span>
+                  <span className="faq-sign">{activeFaq === idx ? '−' : '+'}</span>
+                </button>
+                {activeFaq === idx && (
+                  <div className="faq-answer">
+                    <p>{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 11. SAGE CONTACT BANNER */}
+      <section className="sage-banner-section" id="contact">
         <div className="container sage-banner-container">
           <div className="banner-text-col">
             <div className="banner-dash"></div>
-            <h3 className="banner-title">Zapytaj o wolny termin w Młynówce</h3>
+            <h3 className="banner-title">{t.contactBanner.title}</h3>
             <p className="banner-desc">
-              Baza wypadowa w Krościenku nad Dunajcem. Ogród, stary młyn i górski spokój. Skontaktuj się bezpośrednio z właścicielami domku.
+              {t.contactBanner.desc}
             </p>
           </div>
           <div className="banner-actions-col">
-            <a href="tel:+48791040091" className="btn-banner-phone">+48 791 040 091</a>
+            <a href="tel:+447988065088" className="btn-banner-phone">
+              {t.contactBanner.callBtn}
+            </a>
             <a 
-              href="https://wa.me/48791040091?text=Dzie%C5%84%20dobry%2C%20pytam%20o%20wolny%20termin%20w%20domku%20M%C5%82yn%C3%B3wka" 
+              href={`https://wa.me/447988065088?text=${encodeURIComponent(whatsappMessage)}`} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn-banner-whatsapp"
             >
-              NAPISZ NA WHATSAPP
+              {t.contactBanner.whatsappBtn}
             </a>
           </div>
         </div>
       </section>
 
-      {/* 9. KONTENER REZERWACJI ONLINE Z WIDŻETEM 1:1 */}
-      <section className="booking-system-wrapper" id="rezerwacja">
+      {/* 12. ONLINE BOOKING WIDGET 1:1 */}
+      <section className="booking-system-wrapper" id="booking">
         <div className="container text-center">
           <div className="sage-accent-line"></div>
-          <h2 className="section-title">Rezerwacja online bez pośredników</h2>
-          <p className="section-editorial-text">Gwarancja najniższej ceny bezpośrednio u gospodarzy Młynówki.</p>
+          <h2 className="section-title">{t.bookingBar.modalTitle}</h2>
+          <p className="section-editorial-text">{t.bookingBar.modalSubtitle}</p>
 
           <div style={{ display: 'flex', justifyContent: 'center', margin: '24px 0' }}>
-            <BookingBar onOpenBooking={handleBookingTrigger} />
+            <BookingBar lang={lang} onOpenBooking={handleBookingTrigger} />
           </div>
 
-          <p className="booking-sub-note">Obsługa kart płatniczych Visa / Mastercard · Natychmiastowe potwierdzenie</p>
+          <p className="booking-sub-note">
+            Direct host reservation · Instant confirmation · Free private parking on driveway
+          </p>
         </div>
       </section>
 
