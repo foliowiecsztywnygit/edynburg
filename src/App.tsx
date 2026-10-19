@@ -6,6 +6,7 @@ import { FloatingContact } from './components/FloatingContact';
 import { StickyMobileBar } from './components/StickyMobileBar';
 import { BookingModal } from './components/BookingModal';
 import { Home } from './pages/Home';
+import { ItalyHome } from './pages/ItalyHome';
 import { BlogList } from './pages/BlogList';
 import { BlogPost } from './pages/BlogPost';
 
@@ -27,9 +28,19 @@ function ScrollToTop() {
   return null;
 }
 
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const location = useLocation();
+  const isItaly = location.pathname.startsWith('/wlochy') || location.pathname.startsWith('/sardynia');
+  const defaultProperty = isItaly 
+    ? 'Il Dolce Tramonto Apartment — Sardynia' 
+    : 'Młynówka — Domek przy Młynie';
+
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [bookingProperty, setBookingProperty] = useState('Młynówka — Domek przy Młynie');
+  const [bookingProperty, setBookingProperty] = useState(defaultProperty);
+
+  useEffect(() => {
+    setBookingProperty(defaultProperty);
+  }, [defaultProperty]);
 
   useEffect(() => {
     // Globalny nasłuchiwacz zdarzeń otwierających modal rezerwacyjny
@@ -37,6 +48,8 @@ export const App: React.FC = () => {
       const customEvent = e as CustomEvent<{ property?: string }>;
       if (customEvent.detail?.property) {
         setBookingProperty(customEvent.detail.property);
+      } else {
+        setBookingProperty(defaultProperty);
       }
       setIsBookingOpen(true);
     };
@@ -45,31 +58,40 @@ export const App: React.FC = () => {
     return () => {
       window.removeEventListener('mlynowka:openBooking', handleOpenBooking);
     };
-  }, []);
+  }, [defaultProperty]);
 
+  return (
+    <div className="app-container">
+      <Header onOpenBooking={() => setIsBookingOpen(true)} />
+
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<Home onOpenBooking={() => setIsBookingOpen(true)} />} />
+          <Route path="/pieniny" element={<Home onOpenBooking={() => setIsBookingOpen(true)} />} />
+          <Route path="/wlochy" element={<ItalyHome onOpenBooking={() => setIsBookingOpen(true)} />} />
+          <Route path="/sardynia" element={<ItalyHome onOpenBooking={() => setIsBookingOpen(true)} />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost onOpenBooking={() => setIsBookingOpen(true)} />} />
+        </Routes>
+      </main>
+
+      <Footer />
+      <FloatingContact onOpenBooking={() => setIsBookingOpen(true)} />
+      <StickyMobileBar onOpenBooking={() => setIsBookingOpen(true)} />
+      <BookingModal 
+        isOpen={isBookingOpen} 
+        onClose={() => setIsBookingOpen(false)} 
+        propertyName={bookingProperty} 
+      />
+    </div>
+  );
+};
+
+export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="app-container">
-        <Header onOpenBooking={() => setIsBookingOpen(true)} />
-
-        <main id="main-content">
-          <Routes>
-            <Route path="/" element={<Home onOpenBooking={() => setIsBookingOpen(true)} />} />
-            <Route path="/blog" element={<BlogList />} />
-            <Route path="/blog/:slug" element={<BlogPost onOpenBooking={() => setIsBookingOpen(true)} />} />
-          </Routes>
-        </main>
-
-        <Footer />
-        <FloatingContact onOpenBooking={() => setIsBookingOpen(true)} />
-        <StickyMobileBar onOpenBooking={() => setIsBookingOpen(true)} />
-        <BookingModal 
-          isOpen={isBookingOpen} 
-          onClose={() => setIsBookingOpen(false)} 
-          propertyName={bookingProperty} 
-        />
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 };

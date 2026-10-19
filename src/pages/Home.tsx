@@ -39,7 +39,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenBooking }) => {
           <div className="container hero-banner-container">
             <div className="hero-cover-banner">
               <img 
-                src="/tlohero.jpg" 
+                src="/mlynowka/tlohero.jpg" 
                 alt="Młynówka Domek przy Młynie — widok na ogród, potok i Pieniny" 
                 className="hero-cover-image" 
               />
