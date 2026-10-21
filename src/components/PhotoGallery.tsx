@@ -18,7 +18,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ lang }) => {
     { key: 'living', label: t.categories.living },
     { key: 'bedrooms', label: t.categories.bedrooms },
     { key: 'kitchen', label: t.categories.kitchen },
-    { key: 'bathroom', label: lang === 'pl' ? 'Łazienka' : lang === 'de' ? 'Badezimmer' : lang === 'fr' ? 'Salle de bain' : 'Bathroom' },
+    { key: 'bathroom', label: t.categories.bathroom },
     { key: 'garden', label: t.categories.garden },
     { key: 'driveway', label: t.categories.driveway }
   ];

@@ -145,7 +145,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
                 <img 
-                  src="/zdjecia/living_room_hd.jpg" 
+                  src="/zdjecia/living-room-1.jpg" 
                   alt={t.highlights.cards[0].title} 
                   className="editorial-img" 
                 />
@@ -158,7 +158,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
                 <img 
-                  src="/zdjecia/driveway_hd.jpg" 
+                  src="/zdjecia/driveway.png" 
                   alt={t.highlights.cards[1].title} 
                   className="editorial-img" 
                 />
@@ -171,7 +171,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
                 <img 
-                  src="/zdjecia/garden_patio_hd.jpg" 
+                  src="/zdjecia/garden-patio.jpg" 
                   alt={t.highlights.cards[2].title} 
                   className="editorial-img" 
                 />
@@ -184,7 +184,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <div className="photo-card-vert">
               <div className="photo-wrapper" style={{ '--aspect': '3/4' } as React.CSSProperties}>
                 <img 
-                  src="/zdjecia/bedroom_pink_master_hd.jpg" 
+                  src="/zdjecia/bedroom-pink-1.jpg" 
                   alt={t.highlights.cards[3].title} 
                   className="editorial-img" 
                 />
@@ -507,7 +507,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <div className="reviews-visual-col">
               <div className="reviews-img-wrapper" style={{ '--aspect': '1/1' } as React.CSSProperties}>
                 <img 
-                  src="/zdjecia/bedroom2_yellow_hd.jpg" 
+                  src="/zdjecia/bedroom-olive-1.jpg" 
                   alt="The Edinburgh Garden House - Guest Suite" 
                   className="editorial-img" 
                 />

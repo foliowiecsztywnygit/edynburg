@@ -96,6 +96,7 @@ export interface Translations {
       living: string;
       bedrooms: string;
       kitchen: string;
+      bathroom: string;
       garden: string;
       driveway: string;
     };
@@ -335,6 +336,7 @@ export const translations: Record<Language, Translations> = {
         living: 'Living Room',
         bedrooms: 'Bedrooms',
         kitchen: 'Kitchen & Dining',
+        bathroom: 'Bathroom',
         garden: 'Private Garden',
         driveway: 'Driveway & Exterior'
       },
@@ -786,6 +788,7 @@ export const translations: Record<Language, Translations> = {
         living: 'Salon',
         bedrooms: 'Sypialnie',
         kitchen: 'Kuchnia i Jadalnia',
+        bathroom: 'Łazienka',
         garden: 'Prywatny Ogród',
         driveway: 'Podjazd i Budynek'
       },
@@ -1237,6 +1240,7 @@ export const translations: Record<Language, Translations> = {
         living: 'Wohnzimmer',
         bedrooms: 'Schlafzimmer',
         kitchen: 'Küche & Essen',
+        bathroom: 'Badezimmer',
         garden: 'Privater Garten',
         driveway: 'Einfahrt & Außen'
       },
@@ -1688,6 +1692,7 @@ export const translations: Record<Language, Translations> = {
         living: 'Salon',
         bedrooms: 'Chambres',
         kitchen: 'Cuisine & Repas',
+        bathroom: 'Salle de bain',
         garden: 'Jardin privé',
         driveway: 'Allée & Façade'
       },

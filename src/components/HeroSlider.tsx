@@ -9,12 +9,12 @@ export interface HeroSlide {
 
 export const heroSlides: HeroSlide[] = [
   {
-    src: '/zdjecia/living_room_hd.jpg',
+    src: '/zdjecia/living-room-1.jpg',
     caption: {
-      en: 'Bright and spacious living room with plush sofa, dining table & Smart TV',
-      pl: 'Jasny i przestronny salon z narożną sofą, stołem jadalnianym i Smart TV',
-      de: 'Helles und geräumiges Wohnzimmer mit Ecksofa, Esstisch & Smart-TV',
-      fr: 'Salon lumineux et spacieux avec canapé d’angle, table à manger et Smart TV'
+      en: 'Bright and spacious living room with plush L-shaped sofa, soft carpet and direct garden patio access',
+      pl: 'Jasny i przestronny salon z narożną sofą, miękkim dywanem i bezpośrednim wyjściem na ogród',
+      de: 'Helles und geräumiges Wohnzimmer mit Ecksofa, weichem Teppich und direktem Zugang zur Gartenterrasse',
+      fr: 'Salon lumineux et spacieux avec canapé d’angle, moquette douillette et accès direct au jardin'
     },
     tag: {
       en: 'Living Room',
@@ -24,12 +24,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/bedroom_pink_master_hd.jpg',
+    src: '/zdjecia/bedroom-pink-1.jpg',
     caption: {
-      en: 'Master Bedroom with King Size bed, dressing vanity & Hollywood mirror',
-      pl: 'Główna sypialnia z łóżkiem King Size, toaletką i lustrem Hollywood',
-      de: 'Hauptschlafzimmer mit Kingsize-Bett, Frisiertisch & Hollywood-Spiegel',
-      fr: 'Chambre principale avec lit King Size, coiffeuse et miroir Hollywood'
+      en: 'Master Bedroom with King Size bed, Hollywood illuminated vanity mirror & 3-door wardrobe',
+      pl: 'Główna sypialnia z łóżkiem King Size, podświetlaną toaletką Hollywood i szafą',
+      de: 'Hauptschlafzimmer mit Kingsize-Bett, beleuchtetem Hollywood-Spiegel & 3-türigem Kleiderschrank',
+      fr: 'Chambre principale avec lit King Size, coiffeuse illuminée Hollywood et penderie 3 portes'
     },
     tag: {
       en: 'Master Bedroom',
@@ -39,12 +39,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/garden_patio_hd.jpg',
+    src: '/zdjecia/garden-patio.jpg',
     caption: {
-      en: 'Private enclosed rear garden with patio lounge set & artificial lawn',
-      pl: 'Prywatny, ogrodzony ogródek z meblami wypoczynkowymi i trawnikiem',
-      de: 'Privater umzäunter Garten mit Terrassen-Lounge & Kunstrasen',
-      fr: 'Jardin privatif clos avec salon de terrasse et pelouse synthétique'
+      en: 'Private enclosed rear garden with patio lounge set, artificial lawn & white pebbles',
+      pl: 'Prywatny, ogrodzony ogródek z meblami wypoczynkowymi, sztuczną trawą i białym żwirem',
+      de: 'Privater umzäunter Garten mit Terrassen-Lounge, Kunstrasen & weißem Zierkies',
+      fr: 'Jardin privatif clos avec salon de terrasse, pelouse synthétique et galets blancs'
     },
     tag: {
       en: 'Private Garden',
@@ -54,12 +54,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/bedroom2_yellow_hd.jpg',
+    src: '/zdjecia/bedroom-olive-1.jpg',
     caption: {
-      en: 'Second King bedroom with ceiling ambient LED lighting and gallery wall',
-      pl: 'Druga sypialnia King Size z podświetleniem LED i galerią grafik',
-      de: 'Zweites Kingsize-Schlafzimmer mit LED-Beleuchtung & Bildergalerie',
-      fr: 'Deuxième chambre King Size avec ruban LED et cadres décoratifs'
+      en: 'Second King bedroom with modern ceiling perimeter LED cove lighting & gallery wall',
+      pl: 'Druga sypialnia King Size z nowoczesnym podsufitowym oświetleniem LED i galerią grafik',
+      de: 'Zweites Kingsize-Schlafzimmer mit Decken-LED-Kranzbeleuchtung & Bildergalerie',
+      fr: 'Deuxième chambre King Size avec bandeau LED au plafond et galerie de tableaux'
     },
     tag: {
       en: 'Second Bedroom',
@@ -69,12 +69,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/kitchen_hd.jpg',
+    src: '/zdjecia/kitchen-1.jpg',
     caption: {
-      en: 'Fully equipped kitchen with oven, cooker, fridge-freezer & washing machine',
-      pl: 'W pełni wyposażona kuchnia z piekarnikiem, płytą, lodówką i pralką',
-      de: 'Voll ausgestattete Küche mit Backofen, Herd, Kühlschrank und Waschmaschine',
-      fr: 'Cuisine tout équipée avec four, plaque, réfrigérateur et lave-linge'
+      en: 'Fully equipped galley kitchen with Haier washing machine, gas hob, oven & SIA fridge-freezer',
+      pl: 'W pełni wyposażona kuchnia z pralką Haier, płytą gazową, piekarnikiem i lodówką SIA',
+      de: 'Voll ausgestattete Küche mit Haier-Waschmaschine, Gasherd, Backofen und SIA-Kühlschrank',
+      fr: 'Cuisine tout équipée avec lave-linge Haier, table de cuisson gaz, four et réfrigérateur SIA'
     },
     tag: {
       en: 'Full Kitchen',
@@ -84,12 +84,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/bathroom_hd.jpg',
+    src: '/zdjecia/bathroom-vanity.jpg',
     caption: {
-      en: 'Modern sparkling clean bathroom with bathtub, overhead shower & heated towel rail',
-      pl: 'Nowoczesna, lśniąca łazienka z wanną, prysznicem i grzejnikiem na ręczniki',
-      de: 'Modernes Badezimmer mit Badewanne, Dusche & Handtuchwärmer',
-      fr: 'Salle de bain moderne avec baignoire, douche et sèche-serviettes chauffant'
+      en: 'Modern bathroom with vanity basin unit, designer black heated towel rail & frosted window',
+      pl: 'Nowoczesna łazienka z szafką umywalkową, czarnym grzejnikiem drabinkowym i oknem',
+      de: 'Modernes Badezimmer mit Waschtischunterschrank, schwarzem Handtuchwärmer & Fenster',
+      fr: 'Salle de bain moderne avec meuble vasque, sèche-serviettes noir design et fenêtre dépolie'
     },
     tag: {
       en: 'Bathroom',
@@ -99,12 +99,12 @@ export const heroSlides: HeroSlide[] = [
     }
   },
   {
-    src: '/zdjecia/driveway_hd.jpg',
+    src: '/zdjecia/driveway.png',
     caption: {
-      en: 'Freshly renovated private driveway with free parking directly in front of the house',
-      pl: 'Prywatny, świeżo odnowiony podjazd z darmowym parkingiem przed domem',
-      de: 'Frisch renovierte private Einfahrt mit kostenlosem Parkplatz vor dem Haus',
-      fr: 'Allée de stationnement privée rénovée avec parking gratuit devant la maison'
+      en: 'Freshly renovated private driveway with free off-street parking directly in front of the house',
+      pl: 'Prywatny, świeżo zmodernizowany podjazd z darmowym parkingiem przed samym domem',
+      de: 'Frisch renovierte private Einfahrt mit kostenlosem Parkplatz direkt vor dem Haus',
+      fr: 'Allée de stationnement privée rénovée avec parking gratuit directement devant la maison'
     },
     tag: {
       en: 'Private Driveway',
