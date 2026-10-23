@@ -3,6 +3,8 @@ import { BookingBar } from '../components/BookingBar';
 import { PhotoGallery } from '../components/PhotoGallery';
 import { HeroSlider } from '../components/HeroSlider';
 import { BotanicalDivider } from '../components/BotanicalDivider';
+import { FloralGarland } from '../components/florals/FloralGarland';
+import { FloralSpray } from '../components/florals/FloralSpray';
 import { Language, translations } from '../translations';
 
 interface HomeProps {
@@ -113,8 +115,12 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
+      <FloralGarland variant="a" />
+
       {/* 2. ABOUT & 4 EDITORIAL PHOTO CARDS */}
-      <section className="ukoi-section text-center" id="about">
+      <section className="ukoi-section text-center floral-host" id="about">
+        <FloralSpray side="left" position="top" variant="a" />
+        <FloralSpray side="right" position="bottom" variant="b" />
         <div className="container">
           
           <BotanicalDivider />
@@ -210,8 +216,11 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
+      <FloralGarland variant="b" />
+
       {/* 3. LAYOUT & SPACES */}
-      <section className="ukoi-section bg-subtle botanical-watermark-wrapper" id="spaces">
+      <section className="ukoi-section bg-subtle botanical-watermark-wrapper floral-host" id="spaces">
+        <FloralSpray side="right" position="center" variant="a" />
         {/* Subtle decorative leaf watermarks */}
         <svg className="botanical-watermark top-left" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
           <path d="M50 0 C60 30 90 40 100 50 C70 60 60 90 50 100 C40 70 10 60 0 50 C30 40 40 10 50 0 Z" />
@@ -276,11 +285,17 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
+      <FloralGarland variant="c" />
+
       {/* 4. COMPLETE PHOTO GALLERY WITH LIGHTBOX */}
       <PhotoGallery lang={lang} />
 
+      <FloralGarland variant="a" />
+
       {/* 5. AMENITIES MATRIX */}
-      <section className="ukoi-editorial-qa" id="amenities">
+      <section className="ukoi-editorial-qa floral-host" id="amenities">
+        <FloralSpray side="left" position="center" variant="b" />
+        <FloralSpray side="right" position="top" variant="a" />
         <div className="container editorial-narrow-container">
           
           <div className="text-center" style={{ marginBottom: '40px' }}>
@@ -321,7 +336,8 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       </section>
 
       {/* 6. LOCATION, NEIGHBORHOOD & DIRECT BUSES */}
-      <section className="ukoi-section bg-subtle" id="location">
+      <section className="ukoi-section bg-subtle floral-host" id="location">
+        <FloralSpray side="left" position="bottom" variant="a" />
         <div className="container">
           
           <div className="text-center" style={{ marginBottom: '40px' }}>
@@ -427,8 +443,11 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
+      <FloralGarland variant="b" />
+
       {/* 7. NEARBY ADVENTURE: HILLEND SNOWSPORTS */}
-      <section className="ukoi-section" id="snowsports">
+      <section className="ukoi-section floral-host" id="snowsports">
+        <FloralSpray side="right" position="top" variant="b" />
         <div className="container">
           <div className="text-center" style={{ maxWidth: '850px', margin: '0 auto 40px' }}>
             <BotanicalDivider />
@@ -488,10 +507,11 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
-
+      <FloralGarland variant="c" />
 
       {/* 9. REVIEWS SECTION */}
-      <section className="ukoi-section" id="reviews">
+      <section className="ukoi-section floral-host" id="reviews">
+        <FloralSpray side="right" position="bottom" variant="a" />
         <div className="container">
           <div className="text-center">
             <button 
@@ -549,8 +569,12 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
         </div>
       </section>
 
+      <FloralGarland variant="a" />
+
       {/* 10. HOUSE RULES & FAQ */}
-      <section className="ukoi-section bg-subtle" id="rules-faq">
+      <section className="ukoi-section bg-subtle floral-host" id="rules-faq">
+        <FloralSpray side="left" position="top" variant="a" />
+        <FloralSpray side="right" position="bottom" variant="b" />
         <div className="container editorial-narrow-container">
           <div className="text-center">
             <BotanicalDivider />
@@ -615,7 +639,9 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       </section>
 
       {/* 12. ONLINE BOOKING WIDGET 1:1 */}
-      <section className="booking-system-wrapper" id="booking">
+      <section className="booking-system-wrapper floral-host" id="booking">
+        <FloralSpray side="left" position="bottom" variant="b" />
+        <FloralSpray side="right" position="bottom" variant="a" />
         <div className="container text-center">
           <BotanicalDivider />
           <h2 className="section-title">{t.bookingBar.modalTitle}</h2>

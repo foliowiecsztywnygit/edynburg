@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Language, translations } from '../translations';
 import { propertyPhotos, PropertyPhoto } from '../data/photosData';
 import { BotanicalDivider } from './BotanicalDivider';
+import { FloralSpray } from './florals/FloralSpray';
 
 interface PhotoGalleryProps {
   lang: Language;
@@ -52,7 +53,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ lang }) => {
   const currentPhoto = lightboxIndex !== null ? filteredPhotos[lightboxIndex] : null;
 
   return (
-    <section className="gallery-section" id="gallery">
+    <section className="gallery-section floral-host" id="gallery">
+      <FloralSpray side="left" position="top" variant="b" />
+      <FloralSpray side="right" position="top" variant="a" />
       <div className="container">
         
         <div className="section-header-block text-center">

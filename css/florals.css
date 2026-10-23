@@ -1,0 +1,112 @@
+/* ==========================================================================
+   FLORAL ACCENTS — garlands between sections & side sprays (pure SVG)
+   ========================================================================== */
+
+/* ---------- Garland on the seam between two sections ---------- */
+.floral-garland {
+  position: relative;
+  z-index: 3;
+  height: 130px;
+  margin: -62px 0;
+  pointer-events: none;
+}
+
+.floral-garland svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  filter: drop-shadow(0 3px 6px rgba(67, 104, 78, 0.12));
+}
+
+/* ---------- Sections hosting side sprays ---------- */
+.floral-host {
+  position: relative;
+  overflow-x: clip;
+}
+
+.floral-host > .container {
+  position: relative; /* painted after the sprays (DOM order) – no z-index to avoid trapping modals */
+}
+
+.floral-spray {
+  position: absolute;
+  z-index: 0;
+  width: clamp(120px, 14vw, 230px);
+  aspect-ratio: 240 / 560;
+  pointer-events: none;
+}
+
+.floral-spray svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: 0% 100%;
+  animation: floral-spray-sway 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 10px rgba(67, 104, 78, 0.14));
+}
+
+.floral-spray--left  { left: 0;  transform: translateX(-14%); }
+.floral-spray--right { right: 0; transform: translateX(14%) scaleX(-1); }
+
+.floral-spray--top    { top: 4%; }
+.floral-spray--center { top: 50%; translate: 0 -50%; }
+.floral-spray--bottom { bottom: 2%; }
+
+/* ---------- Micro-animations ---------- */
+.fl-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: floral-sway 6s ease-in-out infinite alternate;
+}
+
+.fl-bloom {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: floral-bloom 7s ease-in-out infinite alternate;
+}
+
+@keyframes floral-sway {
+  0%   { transform: rotate(-4deg); }
+  100% { transform: rotate(4deg); }
+}
+
+@keyframes floral-bloom {
+  0%   { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.05) rotate(6deg); }
+}
+
+@keyframes floral-spray-sway {
+  0%   { transform: rotate(-1.6deg); }
+  100% { transform: rotate(1.6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fl-sway,
+  .fl-bloom,
+  .floral-spray svg {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1360px) {
+  .floral-spray { width: clamp(110px, 11vw, 160px); }
+  .floral-spray--left  { transform: translateX(-30%); }
+  .floral-spray--right { transform: translateX(30%) scaleX(-1); }
+}
+
+@media (max-width: 900px) {
+  .floral-garland { height: 104px; margin: -50px 0; }
+  .floral-spray { width: 96px; opacity: 0.6; }
+}
+
+@media (max-width: 600px) {
+  .floral-garland { height: 88px; margin: -42px 0; }
+  .floral-spray { width: 74px; opacity: 0.42; }
+  .floral-spray--left  { transform: translateX(-38%); }
+  .floral-spray--right { transform: translateX(38%) scaleX(-1); }
+}

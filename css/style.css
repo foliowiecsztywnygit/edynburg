@@ -135,7 +135,7 @@ ul {
   justify-content: center;
   gap: 16px;
   margin: 0 auto 28px auto;
-  max-width: 240px;
+  max-width: 340px;
   width: 100%;
 }
 
@@ -153,15 +153,16 @@ ul {
 }
 
 .botanical-sprig-svg {
-  width: 44px;
-  height: 18px;
+  width: 104px;
+  height: 34px;
   color: var(--ukoi-sage, #73947D);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  overflow: visible;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
 }
 
 .botanical-divider:hover .botanical-sprig-svg {
-  transform: scale(1.1);
+  transform: scale(1.12) rotate(-2deg);
 }
 
 /* FLORALNE ZNAKI WODNE (SUBTLE BACKGROUND WATERMARKS) */
