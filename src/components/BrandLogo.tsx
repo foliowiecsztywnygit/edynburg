@@ -19,7 +19,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({ variant = 'header', classN
       <rect x="20.5" y="24" width="7" height="12" rx="1" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <rect x="12.5" y="20" width="5" height="5" fill="none" stroke="currentColor" strokeWidth="1.6" />
       <rect x="30.5" y="20" width="5" height="5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M2 36c3-3 5-3 7 0M39 36c2-3.5 5-3.5 7 0" fill="none" stroke="var(--c-leaf, #6E8B6A)" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M2 36c3-3 5-3 7 0M39 36c2-3.5 5-3.5 7 0" fill="none" stroke="var(--c-leaf, #32A244)" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
     <span className="brand-logo__text">
       <span className="brand-logo__serif">The Edinburgh</span>

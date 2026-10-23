@@ -5,34 +5,35 @@
 ======================================================== */
 
 :root {
-  /* Kolorystyka i estetyka The Edinburgh Garden House */
-  --c-forest: #1F3A2B;
-  --c-forest-deep: #14281E;
-  --c-sage: #73947D;            /* Ikoniczny szałwiowy zielony */
-  --c-sage-hover: #5A7E65;
-  --c-sage-tint: #EBF2ED;
-  --c-gold: #B08A3E;            /* Złoty akcent z logo "Garden House" */
-  --c-gold-hover: #96742F;
-  --c-gold-tint: #FAF4E8;
-  --c-cream: #FAF8F5;           /* Ciepłe szlachetne tło papierowe */
-  --c-cream-card: #FDFBF7;
+  /* Kolorystyka soczystej trawy ogrodowej (Vibrant Garden Lawn & Scottish House) */
+  --c-forest: #164024;          /* Głęboka soczysta zieleń leśna */
+  --c-forest-deep: #0D2916;
+  --c-leaf: #32A244;            /* Żywy liść trawy */
+  --c-sage: #289D3C;            /* Żywy, soczysty zielony jak trawa ogrodowa */
+  --c-sage-hover: #1F8230;      /* Ciemniejsza soczysta trawa w hover */
+  --c-sage-tint: #E8F7EA;       /* Świeże, lekkie tło zielone */
+  --c-gold: #B88931;            /* Złoty akcent z logo "Garden House" */
+  --c-gold-hover: #986E20;
+  --c-gold-tint: #FAF3E6;
+  --c-cream: #FAF9F5;           /* Ciepłe szlachetne tło papierowe */
+  --c-cream-card: #FDFCF9;
   
   --ukoi-white: #FAF9F6;
-  --ukoi-bg-subtle: #F6F4EE;
-  --ukoi-sage: #73947D;
-  --ukoi-sage-hover: #5F7F68;
-  --ukoi-sage-light: #EBF2ED;
-  --ukoi-sage-banner: #5B7E67;   /* Spokojny leśny zielony banera */
+  --ukoi-bg-subtle: #F2F8F3;     /* Delikatne świeże tło z nutą zieleni */
+  --ukoi-sage: #289D3C;         /* Żywa zieleń trawy */
+  --ukoi-sage-hover: #1F8230;
+  --ukoi-sage-light: #E8F7EA;
+  --ukoi-sage-banner: #1E662D;   /* Soczysty, głęboki zielony baner ogrodowy */
   
-  --ukoi-text: #1F2822;          /* Głęboki, miękki grafitowo-leśny czarny */
-  --ukoi-text-muted: #59635C;    /* Stonowany opisowy */
-  --ukoi-text-light: #8E9891;
-  --ukoi-pipe: #D4DDD6;          /* Kolor pionowych kresek separatora */
+  --ukoi-text: #17241A;          /* Miękki, głęboki grafitowo-leśny */
+  --ukoi-text-muted: #4B5C50;    /* Stonowany opisowy */
+  --ukoi-text-light: #829487;
+  --ukoi-pipe: #C6DEC9;          /* Kolor pionowych kresek separatora */
   
-  --ukoi-border: #E2DDD5;
-  --ukoi-border-subtle: rgba(31, 58, 43, 0.08);
+  --ukoi-border: #D3E6D6;
+  --ukoi-border-subtle: rgba(40, 157, 60, 0.12);
 
-  --ukoi-dark-footer: #15221B;   /* Ciemna butelkowa stopka */
+  --ukoi-dark-footer: #0E2415;   /* Ciemna butelkowa stopka */
   
   /* Typografia wielowarstwowa: Serif (Editorial) + Script (Wordmark) + Sans (Czytelność) */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -3786,11 +3787,11 @@ ul {
 
 /* Card Themes directly drawn from client's printed house rules poster */
 .rule-guideline-card.theme-sage {
-  background: #F0F6F2;
-  border-color: #D3E4D7;
+  background: #EAF8EC;
+  border-color: #BDE7C2;
 }
 .rule-guideline-card.theme-sage .rule-card-icon-wrap {
-  background: #5E8A68;
+  background: #289D3C;
 }
 
 .rule-guideline-card.theme-gold {
@@ -3826,19 +3827,19 @@ ul {
 }
 
 .rule-guideline-card.theme-teal {
-  background: #EEF8F6;
-  border-color: #CFECE6;
+  background: #E8F8F3;
+  border-color: #BBEBD7;
 }
 .rule-guideline-card.theme-teal .rule-card-icon-wrap {
-  background: #2C8770;
+  background: #1FA675;
 }
 
 .rule-guideline-card.theme-mint {
-  background: #EFF7F1;
-  border-color: #CEE9D4;
+  background: #E6F8EA;
+  border-color: #B0E9BA;
 }
 .rule-guideline-card.theme-mint .rule-card-icon-wrap {
-  background: #3F8753;
+  background: #2FA843;
 }
 
 .rule-guideline-card.theme-lavender {

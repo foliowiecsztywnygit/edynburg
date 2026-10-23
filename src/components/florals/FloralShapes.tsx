@@ -21,10 +21,10 @@ export const FLORA = {
   goldDeep: '#C98A22',
   coral: '#F09272',
   coralLight: '#F9C3AE',
-  leaf: '#6F9A7A',
-  leafDeep: '#43684E',
-  leafLight: '#A9CBA6',
-  stem: '#5C8566',
+  leaf: '#3EA84C',        /* żywy zielony trawy */
+  leafDeep: '#237830',    /* głęboka soczysta trawa */
+  leafLight: '#72CE7E',   /* świeża, jasna trawa */
+  stem: '#2C883A',        /* świeża łodyga */
 };
 
 export interface ShapeProps {
