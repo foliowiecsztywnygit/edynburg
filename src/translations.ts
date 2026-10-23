@@ -56,8 +56,7 @@ export interface Translations {
     modalTitle: string;
     modalSubtitle: string;
     directBookingNote: string;
-    callHost: string;
-    whatsappHost: string;
+    smsHost: string;
     emailHost: string;
     selectedDates: (checkIn: string, checkOut: string, guests: string) => string;
     months: string[];
@@ -170,9 +169,9 @@ export interface Translations {
   contactBanner: {
     title: string;
     desc: string;
-    callBtn: string;
-    whatsappBtn: string;
+    smsBtn: string;
     emailBtn: string;
+    noCallsNote: string;
   };
   footer: {
     brandDesc: string;
@@ -187,11 +186,11 @@ export interface Translations {
   };
   floating: {
     hostTitle: string;
-    callNow: string;
-    whatsappNow: string;
+    smsNow: string;
+    smsDesc: string;
     emailNow: string;
-    directTalk: string;
-    instantReply: string;
+    emailDesc: string;
+    noCallsNote: string;
   };
 }
 
@@ -208,7 +207,7 @@ export const translations: Record<Language, Translations> = {
     },
     topBar: {
       selectLanguage: 'Language:',
-      directContact: 'Direct Booking & Inquiries: +44 7988 065088'
+      directContact: 'Direct booking & inquiries by text or email'
     },
     nav: {
       about: 'ABOUT',
@@ -251,9 +250,8 @@ export const translations: Record<Language, Translations> = {
       selectDates: 'Select dates',
       modalTitle: 'The Edinburgh Garden House — Reservation & Availability',
       modalSubtitle: 'Gilmerton, Edinburgh EH17 · Entire 2-Bed House with Private Garden & Parking',
-      directBookingNote: 'Direct booking guarantee — no third-party platform fees. Contact host Jacek directly via WhatsApp, Phone, or Email for instant confirmation and best rates:',
-      callHost: 'Call Jacek: +44 7988 065088',
-      whatsappHost: 'Message on WhatsApp',
+      directBookingNote: 'Book directly with Jacek — no platform fees. He works during the day, so please send a text or an email and he will reply as soon as he can:',
+      smsHost: 'Text Jacek (SMS): +44 7988 065088',
       emailHost: 'Email: jacek31-76@hotmail.com',
       selectedDates: (inDate, outDate, g) => `Selected: ${inDate} to ${outDate} (${g})`,
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -572,12 +570,20 @@ export const translations: Record<Language, Translations> = {
           desc: 'Maximum 4 guests. Ideal for families, couples, or small groups.'
         },
         {
-          title: 'Parking:',
-          desc: 'Free private driveway parking directly in front of the house included with every stay.'
+          title: 'Quiet Hours:',
+          desc: 'Please respect our neighbours — quiet hours are from 22:00 to 07:00.'
         },
         {
           title: 'Smoking & Parties:',
           desc: 'Strictly non-smoking inside the house. No parties or excessive noise.'
+        },
+        {
+          title: 'Parking:',
+          desc: 'Free private driveway parking directly in front of the house included with every stay.'
+        },
+        {
+          title: 'Garden:',
+          desc: 'You are welcome to enjoy the garden — please keep it tidy and respect the outdoor space.'
         },
         {
           title: 'Safety & Security:',
@@ -618,10 +624,10 @@ export const translations: Record<Language, Translations> = {
     },
     contactBanner: {
       title: 'Inquire or Book Directly with Host Jacek',
-      desc: 'Get the guaranteed best rate, personal hospitality, and direct communication without intermediary booking fees.',
-      callBtn: '+44 7988 065088',
-      whatsappBtn: 'CHAT ON WHATSAPP',
-      emailBtn: 'SEND AN EMAIL'
+      desc: 'Get the best rate with no platform fees. Jacek works during the day, so please text or email — he replies as soon as he is free.',
+      smsBtn: 'SEND A TEXT',
+      emailBtn: 'SEND AN EMAIL',
+      noCallsNote: 'Text & email only — no phone calls, please.'
     },
     footer: {
       brandDesc: 'Modern 2-bedroom house in Gilmerton, Edinburgh (EH17) with private garden, free driveway, superfast Wi-Fi, and direct bus connection to City Centre.',
@@ -640,11 +646,11 @@ export const translations: Record<Language, Translations> = {
     },
     floating: {
       hostTitle: 'Contact Host Jacek',
-      callNow: 'Call +44 7988 065088',
-      whatsappNow: 'Chat on WhatsApp',
-      emailNow: 'Email Host',
-      directTalk: 'Direct phone line',
-      instantReply: 'Fast personal reply'
+      smsNow: 'Send a text (SMS)',
+      smsDesc: '+44 7988 065088',
+      emailNow: 'Send an email',
+      emailDesc: 'jacek31-76@hotmail.com',
+      noCallsNote: 'Jacek works during the day — text or email only, please.'
     }
   },
 
@@ -660,7 +666,7 @@ export const translations: Record<Language, Translations> = {
     },
     topBar: {
       selectLanguage: 'Język:',
-      directContact: 'Rezerwacja bezpośrednia i kontakt: +44 7988 065088'
+      directContact: 'Rezerwacja bezpośrednia: SMS lub e-mail'
     },
     nav: {
       about: 'O DOMU',
@@ -703,9 +709,8 @@ export const translations: Record<Language, Translations> = {
       selectDates: 'Wybierz termin',
       modalTitle: 'The Edinburgh Garden House — Rezerwacja i Dostępność',
       modalSubtitle: 'Gilmerton, Edynburg EH17 · Cały dom na wyłączność z ogrodem i podjazdem',
-      directBookingNote: 'Gwarancja rezerwacji bezpośredniej bez prowizji pośredników. Skontaktuj się z gospodarzem Jackiem przez WhatsApp, telefon lub e-mail:',
-      callHost: 'Zadzwoń do Jacka: +44 7988 065088',
-      whatsappHost: 'Napisz na WhatsApp',
+      directBookingNote: 'Rezerwuj bezpośrednio u Jacka, bez prowizji platform. W ciągu dnia jest w pracy, więc napisz SMS lub e-mail — odpowie najszybciej, jak to możliwe:',
+      smsHost: 'SMS do Jacka: +44 7988 065088',
       emailHost: 'E-mail: jacek31-76@hotmail.com',
       selectedDates: (inDate, outDate, g) => `Wybrany termin: ${inDate} do ${outDate} (${g})`,
       months: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
@@ -1024,12 +1029,20 @@ export const translations: Record<Language, Translations> = {
           desc: 'Maksymalnie 4 gości. Idealny układ dla rodzin, par lub małych grup znajomych.'
         },
         {
-          title: 'Parking:',
-          desc: 'Bezpłatny prywatny podjazd przed samym wejściem do budynku w cenie pobytu.'
+          title: 'Cisza nocna:',
+          desc: 'Prosimy o szacunek dla sąsiadów — cisza nocna obowiązuje od 22:00 do 7:00.'
         },
         {
           title: 'Kultura pobytu:',
           desc: 'Całkowity zakaz palenia tytoniu wewnątrz domu. Obiekt nie jest przeznaczony na organizację imprez.'
+        },
+        {
+          title: 'Parking:',
+          desc: 'Bezpłatny prywatny podjazd przed samym wejściem do budynku w cenie pobytu.'
+        },
+        {
+          title: 'Ogród:',
+          desc: 'Zapraszamy do korzystania z ogrodu — prosimy tylko o utrzymanie porządku.'
         },
         {
           title: 'Bezpieczeństwo:',
@@ -1070,10 +1083,10 @@ export const translations: Record<Language, Translations> = {
     },
     contactBanner: {
       title: 'Zapytaj o wolny termin bezpośrednio u gospodarza',
-      desc: 'Najlepsza gwarantowana cena, indywidualne podejście i brak prowizji platform pośredniczących. Skontaktuj się bezpośrednio z Jackiem.',
-      callBtn: '+44 7988 065088',
-      whatsappBtn: 'NAPISZ NA WHATSAPP',
-      emailBtn: 'WYŚLIJ E-MAIL'
+      desc: 'Najlepsza cena bez prowizji platform. Jacek w ciągu dnia pracuje, więc najlepiej napisz SMS lub e-mail — odpowie, gdy tylko będzie mógł.',
+      smsBtn: 'WYŚLIJ SMS',
+      emailBtn: 'WYŚLIJ E-MAIL',
+      noCallsNote: 'Tylko SMS i e-mail — prosimy nie dzwonić.'
     },
     footer: {
       brandDesc: 'Nowoczesny 2-pokojowy dom w Edynburgu (EH17, Gilmerton) z prywatnym ogrodem, bezpłatnym podjazdem, szybkim Wi-Fi i bezpośrednim autobusem do centrum.',
@@ -1092,11 +1105,11 @@ export const translations: Record<Language, Translations> = {
     },
     floating: {
       hostTitle: 'Kontakt z Gospodarzem Jackiem',
-      callNow: 'Zadzwoń: +44 7988 065088',
-      whatsappNow: 'Napisz na WhatsApp',
+      smsNow: 'Wyślij SMS',
+      smsDesc: '+44 7988 065088',
       emailNow: 'Wyślij e-mail',
-      directTalk: 'Bezpośrednia rozmowa',
-      instantReply: 'Szybka odpowiedź'
+      emailDesc: 'jacek31-76@hotmail.com',
+      noCallsNote: 'Jacek w ciągu dnia pracuje — tylko SMS lub e-mail.'
     }
   },
 
@@ -1112,7 +1125,7 @@ export const translations: Record<Language, Translations> = {
     },
     topBar: {
       selectLanguage: 'Sprache:',
-      directContact: 'Direktbuchung & Kontakt: +44 7988 065088'
+      directContact: 'Direktbuchung per SMS oder E-Mail'
     },
     nav: {
       about: 'ÜBER DAS HAUS',
@@ -1155,9 +1168,8 @@ export const translations: Record<Language, Translations> = {
       selectDates: 'Daten wählen',
       modalTitle: 'The Edinburgh Garden House — Reservierung & Kontakt',
       modalSubtitle: 'Gilmerton, Edinburgh EH17 · Gesamtes Haus mit Garten & privatem Parkplatz',
-      directBookingNote: 'Direktbuchung ohne Buchungsgebühren. Kontaktieren Sie Gastgeber Jacek direkt per WhatsApp, Telefon oder E-Mail:',
-      callHost: 'Jacek anrufen: +44 7988 065088',
-      whatsappHost: 'Auf WhatsApp schreiben',
+      directBookingNote: 'Direkt bei Jacek buchen – ohne Plattformgebühren. Er arbeitet tagsüber, daher bitte per SMS oder E-Mail – er antwortet so schnell wie möglich:',
+      smsHost: 'SMS an Jacek: +44 7988 065088',
       emailHost: 'E-Mail: jacek31-76@hotmail.com',
       selectedDates: (inDate, outDate, g) => `Gewählter Zeitraum: ${inDate} bis ${outDate} (${g})`,
       months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
@@ -1476,12 +1488,20 @@ export const translations: Record<Language, Translations> = {
           desc: 'Maximal 4 Gäste. Ideal für Familien oder kleine Reisegruppen.'
         },
         {
-          title: 'Parken:',
-          desc: 'Kostenlose private Einfahrt direkt vor dem Haus im Preis inbegriffen.'
+          title: 'Nachtruhe:',
+          desc: 'Bitte nehmen Sie Rücksicht auf die Nachbarn – Nachtruhe von 22:00 bis 7:00 Uhr.'
         },
         {
           title: 'Rauchen & Feiern:',
           desc: 'Strikte Nichtraucherunterkunft im Innenbereich. Keine Partys oder Veranstaltungen.'
+        },
+        {
+          title: 'Parken:',
+          desc: 'Kostenlose private Einfahrt direkt vor dem Haus im Preis inbegriffen.'
+        },
+        {
+          title: 'Garten:',
+          desc: 'Genießen Sie den Garten – wir bitten nur darum, ihn ordentlich zu hinterlassen.'
         },
         {
           title: 'Sicherheit:',
@@ -1522,10 +1542,10 @@ export const translations: Record<Language, Translations> = {
     },
     contactBanner: {
       title: 'Fragen Sie Ihren Wunschtermin direkt beim Gastgeber an',
-      desc: 'Beste Raten ohne Plattformgebühren und direkter persönlicher Kontakt mit Gastgeber Jacek.',
-      callBtn: '+44 7988 065088',
-      whatsappBtn: 'AUF WHATSAPP SCHREIBEN',
-      emailBtn: 'E-MAIL SENDEN'
+      desc: 'Beste Raten ohne Plattformgebühren. Jacek arbeitet tagsüber – schreiben Sie ihm bitte per SMS oder E-Mail, er antwortet, sobald er kann.',
+      smsBtn: 'SMS SENDEN',
+      emailBtn: 'E-MAIL SENDEN',
+      noCallsNote: 'Nur SMS & E-Mail – bitte keine Anrufe.'
     },
     footer: {
       brandDesc: 'Modernes 2-Zimmer-Haus in Edinburgh (EH17, Gilmerton) mit Garten, kostenlosem Parkplatz, schnellem WLAN und direktem Bus ins Stadtzentrum.',
@@ -1544,11 +1564,11 @@ export const translations: Record<Language, Translations> = {
     },
     floating: {
       hostTitle: 'Kontakt zu Gastgeber Jacek',
-      callNow: 'Anrufen: +44 7988 065088',
-      whatsappNow: 'WhatsApp-Nachricht',
+      smsNow: 'SMS schreiben',
+      smsDesc: '+44 7988 065088',
       emailNow: 'E-Mail schreiben',
-      directTalk: 'Direktes Telefonat',
-      instantReply: 'Schnelle Antwort'
+      emailDesc: 'jacek31-76@hotmail.com',
+      noCallsNote: 'Jacek arbeitet tagsüber – bitte nur SMS oder E-Mail.'
     }
   },
 
@@ -1564,7 +1584,7 @@ export const translations: Record<Language, Translations> = {
     },
     topBar: {
       selectLanguage: 'Langue :',
-      directContact: 'Réservation directe & contact : +44 7988 065088'
+      directContact: 'Réservation directe par SMS ou e-mail'
     },
     nav: {
       about: 'À PROPOS',
@@ -1607,9 +1627,8 @@ export const translations: Record<Language, Translations> = {
       selectDates: 'Sélectionner les dates',
       modalTitle: 'The Edinburgh Garden House — Disponibilités & Réservation',
       modalSubtitle: 'Gilmerton, Édimbourg EH17 · Maison entière avec jardin & allée privée',
-      directBookingNote: 'Garantie du meilleur tarif sans frais d’intermédiaire. Contactez directement l’hôte Jacek par WhatsApp, téléphone ou e-mail :',
-      callHost: 'Appeler Jacek : +44 7988 065088',
-      whatsappHost: 'Écrire sur WhatsApp',
+      directBookingNote: 'Réservez directement auprès de Jacek, sans frais de plateforme. Il travaille en journée : merci de lui écrire par SMS ou e-mail, il vous répondra dès que possible :',
+      smsHost: 'SMS à Jacek : +44 7988 065088',
       emailHost: 'E-mail : jacek31-76@hotmail.com',
       selectedDates: (inDate, outDate, g) => `Dates choisies : du ${inDate} au ${outDate} (${g})`,
       months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
@@ -1928,12 +1947,20 @@ export const translations: Record<Language, Translations> = {
           desc: '4 voyageurs maximum. Idéal pour les familles, les couples ou les petits groupes.'
         },
         {
-          title: 'Stationnement :',
-          desc: 'Allée de stationnement privée gratuite directement devant la maison incluse.'
+          title: 'Heures calmes :',
+          desc: 'Merci de respecter le voisinage — calme de 22h00 à 7h00.'
         },
         {
           title: 'Règles de vie :',
           desc: 'Logement strictement non-fumeur à l’intérieur. Fêtes et événements interdits.'
+        },
+        {
+          title: 'Stationnement :',
+          desc: 'Allée de stationnement privée gratuite directement devant la maison incluse.'
+        },
+        {
+          title: 'Jardin :',
+          desc: 'Profitez librement du jardin — merci simplement de le laisser propre.'
         },
         {
           title: 'Sécurité :',
@@ -1974,10 +2001,10 @@ export const translations: Record<Language, Translations> = {
     },
     contactBanner: {
       title: 'Réservez en direct auprès de votre hôte Jacek',
-      desc: 'Bénéficiez du meilleur tarif garanti, d’un échange direct et d’aucun frais de plateforme.',
-      callBtn: '+44 7988 065088',
-      whatsappBtn: 'CONTACTER SUR WHATSAPP',
-      emailBtn: 'ENVOYER UN E-MAIL'
+      desc: 'Le meilleur tarif, sans frais de plateforme. Jacek travaille en journée : écrivez-lui par SMS ou e-mail, il répond dès qu’il est disponible.',
+      smsBtn: 'ENVOYER UN SMS',
+      emailBtn: 'ENVOYER UN E-MAIL',
+      noCallsNote: 'SMS et e-mail uniquement — merci de ne pas appeler.'
     },
     footer: {
       brandDesc: 'Maison moderne de 2 chambres à Édimbourg (EH17, Gilmerton) avec jardin privé, parking gratuit, Wi-Fi ultra-rapide et bus direct vers le centre.',
@@ -1996,11 +2023,11 @@ export const translations: Record<Language, Translations> = {
     },
     floating: {
       hostTitle: 'Contact Hôte Jacek',
-      callNow: 'Appeler : +44 7988 065088',
-      whatsappNow: 'Discuter sur WhatsApp',
+      smsNow: 'Envoyer un SMS',
+      smsDesc: '+44 7988 065088',
       emailNow: 'Envoyer un e-mail',
-      directTalk: 'Ligne directe',
-      instantReply: 'Réponse rapide'
+      emailDesc: 'jacek31-76@hotmail.com',
+      noCallsNote: 'Jacek travaille en journée — SMS ou e-mail uniquement.'
     }
   }
 };

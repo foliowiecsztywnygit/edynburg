@@ -5,29 +5,44 @@
 ======================================================== */
 
 :root {
-  /* Kolorystyka ukoi.pl */
-  --ukoi-white: #FFFFFF;
-  --ukoi-bg-subtle: #FAFAF8;
-  --ukoi-sage: #73947D;            /* Ikoniczny szałwiowy zielony ukoi */
+  /* Kolorystyka i estetyka The Edinburgh Garden House */
+  --c-forest: #1F3A2B;
+  --c-forest-deep: #14281E;
+  --c-sage: #73947D;            /* Ikoniczny szałwiowy zielony */
+  --c-sage-hover: #5A7E65;
+  --c-sage-tint: #EBF2ED;
+  --c-gold: #B08A3E;            /* Złoty akcent z logo "Garden House" */
+  --c-gold-hover: #96742F;
+  --c-gold-tint: #FAF4E8;
+  --c-cream: #FAF8F5;           /* Ciepłe szlachetne tło papierowe */
+  --c-cream-card: #FDFBF7;
+  
+  --ukoi-white: #FAF9F6;
+  --ukoi-bg-subtle: #F6F4EE;
+  --ukoi-sage: #73947D;
   --ukoi-sage-hover: #5F7F68;
   --ukoi-sage-light: #EBF2ED;
-  --ukoi-sage-banner: #7E9E88;     /* Kolor dolnego banera */
+  --ukoi-sage-banner: #5B7E67;   /* Spokojny leśny zielony banera */
   
-  --ukoi-text: #1F1F1D;            /* Głęboki, miękki czarny */
-  --ukoi-text-muted: #64645E;      /* Stonowany szary opisowy */
-  --ukoi-text-light: #94948C;
-  --ukoi-pipe: #D0D0C8;            /* Kolor pionowych kresek separatora */
+  --ukoi-text: #1F2822;          /* Głęboki, miękki grafitowo-leśny czarny */
+  --ukoi-text-muted: #59635C;    /* Stonowany opisowy */
+  --ukoi-text-light: #8E9891;
+  --ukoi-pipe: #D4DDD6;          /* Kolor pionowych kresek separatora */
   
-  --ukoi-border: #E0E2E4;
-  --ukoi-border-subtle: rgba(31, 31, 29, 0.08);
+  --ukoi-border: #E2DDD5;
+  --ukoi-border-subtle: rgba(31, 58, 43, 0.08);
 
-  --ukoi-dark-footer: #141715;     /* Ciemna stopka ukoi */
+  --ukoi-dark-footer: #15221B;   /* Ciemna butelkowa stopka */
   
-  /* Typografia */
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typografia wielowarstwowa: Serif (Editorial) + Script (Wordmark) + Sans (Czytelność) */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Alex Brush', cursive;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main: var(--font-sans);
   
   /* Przyciski i elementy */
-  --radius-btn: 3px;               /* Bardzo delikatny, prostokątny promień ukoi */
+  --radius-btn: 4px;
+  --radius-card: 10px;
   --transition: all 0.25s ease;
 }
 
@@ -317,33 +332,67 @@ ul {
   padding: 24px 24px;
 }
 
-/* LOGO: CZYSTE, SZEROKO ROZSTRZELONE JAK UKOI */
-.ukoi-logo {
+/* LOGO: THE EDINBURGH GARDEN HOUSE (COTTAGE + SERIF + SCRIPT) */
+.ukoi-logo-wrap {
+  display: inline-flex;
+  text-decoration: none;
+  align-items: center;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo__house {
+  width: 36px;
+  height: 30px;
+  color: var(--c-forest, #1F3A2B);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover .brand-logo__house {
+  transform: translateY(-2px);
+}
+
+.brand-logo__text {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
+  line-height: 1;
 }
 
-.logo-main {
-  font-size: clamp(1.4rem, 2.6vw, 2.3rem);
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ukoi-text);
-  line-height: 1.1;
-  white-space: nowrap;
-}
-
-.logo-sub {
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
+.brand-logo__serif {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
   font-weight: 600;
-  color: var(--ukoi-sage);
-  margin-top: 5px;
-  text-transform: uppercase;
-  white-space: nowrap;
+  letter-spacing: 0.03em;
+  color: var(--c-forest, #1F3A2B);
+  line-height: 1;
+}
+
+.brand-logo__script {
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+  color: var(--c-gold, #B08A3E);
+  line-height: 0.8;
+  margin-top: 2px;
+  transform: rotate(-1deg);
+}
+
+/* Footer logo variant */
+.brand-logo--footer .brand-logo__house {
+  color: #FFFFFF;
+}
+
+.brand-logo--footer .brand-logo__serif {
+  color: #FFFFFF;
+}
+
+.brand-logo--footer .brand-logo__script {
+  color: #D4AF37;
 }
 
 .header-right-tools {
@@ -498,12 +547,13 @@ ul {
 }
 
 .hero-heading {
-  font-size: clamp(2.1rem, 3.8vw, 3.2rem);
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--ukoi-text);
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--c-forest, #1F3A2B);
   margin-bottom: 24px;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
 .hero-lead {
@@ -824,11 +874,12 @@ ul {
    SEKCJA 2: 4 PIONOWE FOTOGRAFIE W JEDNYM RZĘDZIE (UKOI SCREENSHOT 2)
 ======================================================== */
 .section-title {
-  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  font-weight: 400;
-  color: var(--ukoi-text);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 600;
+  color: var(--c-forest, #1F3A2B);
   margin-bottom: 12px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .section-subtitle-link {
@@ -1315,37 +1366,57 @@ ul {
   flex-shrink: 0;
 }
 
-.btn-banner-phone {
-  background-color: transparent;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+.banner-work-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  padding: 5px 14px;
   font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  padding: 13px 26px;
-  border-radius: var(--radius-btn);
-  transition: var(--transition);
+  color: #FFFFFF;
+  margin-top: 14px;
+  font-weight: 500;
 }
 
-.btn-banner-phone:hover {
-  background-color: #FFFFFF;
-  color: var(--ukoi-sage);
-}
-
-.btn-banner-whatsapp {
-  background-color: #FFFFFF;
-  color: var(--ukoi-sage);
+.btn-banner-sms,
+.btn-banner-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 14px 28px;
+  padding: 13px 26px;
   border-radius: var(--radius-btn);
   transition: var(--transition);
+  text-decoration: none;
 }
 
-.btn-banner-whatsapp:hover {
-  background-color: #F4F4F0;
+.btn-banner-sms {
+  background-color: #FFFFFF;
+  color: var(--c-forest, #1F3A2B);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.btn-banner-sms:hover {
+  background-color: var(--c-gold-tint, #FAF4E8);
+  color: var(--c-gold, #B08A3E);
+  transform: translateY(-2px);
+}
+
+.btn-banner-email {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-banner-email:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
   transform: translateY(-2px);
 }
 
@@ -1631,9 +1702,37 @@ ul {
   border-color: var(--ukoi-sage);
 }
 
-.channel-svg {
-  color: var(--ukoi-sage);
+.channel-icon-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  color: #FFFFFF;
+}
+
+.channel-icon-circle.sms-circle {
+  background: var(--c-sage, #73947D);
+}
+
+.channel-icon-circle.mail-circle {
+  background: var(--c-forest, #1F3A2B);
+}
+
+.bubble-notice-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--c-cream, #FAF8F5);
+  border-radius: 4px;
+  font-size: 0.76rem;
+  color: var(--ukoi-text-muted);
+  line-height: 1.35;
+  border: 1px dashed var(--ukoi-border);
+  margin-top: 4px;
 }
 
 .channel-desc strong {
@@ -3555,6 +3654,229 @@ ul {
   .center-buttons-row .btn-outline-sage {
     width: 100%;
   }
+}
+
+/* ==========================================================================
+   HOUSE RULES POSTER DESIGN SYSTEM (COTTAGE GARDEN EDITORIAL)
+   Directly matching the host's printed guest guidelines poster
+   ========================================================================== */
+.house-rules-poster-card {
+  background: var(--c-cream-card, #FDFBF7);
+  border: 1px solid #EAE3D6;
+  border-radius: 16px;
+  padding: 44px 36px 36px 36px;
+  box-shadow: 0 10px 32px rgba(31, 58, 43, 0.05);
+  margin: 0 auto 30px auto;
+  position: relative;
+  max-width: 1140px;
+}
+
+.rules-poster-header {
+  max-width: 720px;
+  margin: 0 auto 32px auto;
+}
+
+.rules-poster-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--c-gold, #B08A3E);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.rules-poster-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  font-weight: 600;
+  color: var(--c-forest, #1F3A2B);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.rules-poster-lead {
+  font-size: 0.94rem;
+  color: var(--ukoi-text-muted, #64645E);
+  line-height: 1.6;
+}
+
+.rules-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 980px) {
+  .rules-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .rules-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .house-rules-poster-card {
+    padding: 24px 16px;
+    border-radius: 10px;
+  }
+}
+
+.rule-guideline-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rule-guideline-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+.rule-card-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+}
+
+.rule-card-text {
+  flex: 1;
+}
+
+.rule-card-num-title {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.rule-card-num {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  opacity: 0.65;
+}
+
+.rule-card-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-forest, #1F3A2B);
+  line-height: 1.3;
+}
+
+.rule-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4A524D;
+  margin: 0;
+}
+
+/* Card Themes directly drawn from client's printed house rules poster */
+.rule-guideline-card.theme-sage {
+  background: #F0F6F2;
+  border-color: #D3E4D7;
+}
+.rule-guideline-card.theme-sage .rule-card-icon-wrap {
+  background: #5E8A68;
+}
+
+.rule-guideline-card.theme-gold {
+  background: #FCF7EC;
+  border-color: #EFE0C2;
+}
+.rule-guideline-card.theme-gold .rule-card-icon-wrap {
+  background: #C4922A;
+}
+
+.rule-guideline-card.theme-amber {
+  background: #FCF4EB;
+  border-color: #F2DBC3;
+}
+.rule-guideline-card.theme-amber .rule-card-icon-wrap {
+  background: #B87625;
+}
+
+.rule-guideline-card.theme-night {
+  background: #EEF4F9;
+  border-color: #D3E2EE;
+}
+.rule-guideline-card.theme-night .rule-card-icon-wrap {
+  background: #2D5B88;
+}
+
+.rule-guideline-card.theme-rose {
+  background: #FDF0F3;
+  border-color: #F5D3DB;
+}
+.rule-guideline-card.theme-rose .rule-card-icon-wrap {
+  background: #BA4259;
+}
+
+.rule-guideline-card.theme-teal {
+  background: #EEF8F6;
+  border-color: #CFECE6;
+}
+.rule-guideline-card.theme-teal .rule-card-icon-wrap {
+  background: #2C8770;
+}
+
+.rule-guideline-card.theme-mint {
+  background: #EFF7F1;
+  border-color: #CEE9D4;
+}
+.rule-guideline-card.theme-mint .rule-card-icon-wrap {
+  background: #3F8753;
+}
+
+.rule-guideline-card.theme-lavender {
+  background: #F5F0F9;
+  border-color: #E2D5ED;
+}
+.rule-guideline-card.theme-lavender .rule-card-icon-wrap {
+  background: #734899;
+}
+
+.rule-guideline-card.theme-coral {
+  background: #FCF1EC;
+  border-color: #F5D7CB;
+}
+.rule-guideline-card.theme-coral .rule-card-icon-wrap {
+  background: #D15A36;
+}
+
+.rules-poster-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px dashed #E0D7C8;
+}
+
+.rules-heart-badge {
+  font-size: 1.1rem;
+  color: var(--c-gold, #B08A3E);
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+}
+
+.rules-footer-message {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-forest, #1F3A2B);
+  margin: 0;
 }
 
 

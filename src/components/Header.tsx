@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Language, translations } from '../translations';
+import { BrandLogo } from './BrandLogo';
+import { inquiryMessage, smsHref, mailHref } from '../contact';
+import { LineIcon } from './icons/LineIcon';
 
 interface HeaderProps {
   lang: Language;
@@ -12,6 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const t = translations[lang];
+  const msg = inquiryMessage(lang);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
           </div>
 
           <div className="top-languages">
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginRight: '6px' }}>
+            <span style={{ fontSize: '0.8rem', color: 'rgba(31,31,29,0.5)', marginRight: '6px' }}>
               {t.topBar.selectLanguage}
             </span>
             <button
@@ -98,9 +102,8 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
         <div className="container ukoi-header-container">
           
           {/* LOGO */}
-          <a href="#hero" className="ukoi-logo" aria-label={t.brand.name}>
-            <span className="logo-main">{t.brand.name}</span>
-            <span className="logo-sub">🌿 {t.brand.sub}</span>
+          <a href="#hero" className="ukoi-logo-wrap" aria-label={t.brand.name}>
+            <BrandLogo variant="header" />
           </a>
 
           {/* DESKTOP NAV */}
@@ -240,13 +243,31 @@ export const Header: React.FC<HeaderProps> = ({ lang, onSelectLang, onOpenBookin
             </nav>
 
             <div className="drawer-footer-tools" style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--ukoi-border, #E0E2E4)' }}>
-              <a href="tel:+447988065088" className="drawer-phone">
-                📞 +44 7988 065088
-              </a>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
+                <a 
+                  href={smsHref(msg)} 
+                  className="btn-drawer-contact"
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px 16px', background: 'var(--c-sage-tint, #EBF2ED)', color: 'var(--c-forest, #1F3A2B)', borderRadius: '4px', fontWeight: 600, fontSize: '0.86rem' }}
+                >
+                  <LineIcon name="sms" size={17} />
+                  <span>SMS: +44 7988 065088</span>
+                </a>
+                <a 
+                  href={mailHref(msg, 'The Edinburgh Garden House – inquiry')} 
+                  className="btn-drawer-contact"
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px 16px', background: 'var(--ukoi-bg-subtle, #FAFAF8)', color: 'var(--c-forest, #1F3A2B)', border: '1px solid var(--ukoi-border, #E0E2E4)', borderRadius: '4px', fontWeight: 600, fontSize: '0.86rem' }}
+                >
+                  <LineIcon name="mail" size={17} />
+                  <span>Email: jacek31-76@hotmail.com</span>
+                </a>
+                <small style={{ color: 'var(--ukoi-text-muted, #64645E)', fontSize: '0.74rem', textAlign: 'center', marginTop: '2px' }}>
+                  🌿 {t.floating.noCallsNote}
+                </small>
+              </div>
               <button 
                 type="button" 
                 className="btn-sage" 
-                style={{ width: '100%', marginTop: '12px' }}
+                style={{ width: '100%' }}
                 onClick={(e) => {
                   setDrawerOpen(false);
                   triggerBooking(e);

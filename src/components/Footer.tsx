@@ -1,6 +1,9 @@
 import React from 'react';
 import { BotanicalDivider } from './BotanicalDivider';
 import { Language, translations } from '../translations';
+import { BrandLogo } from './BrandLogo';
+import { inquiryMessage, smsHref, mailHref, HOST_PHONE_DISPLAY, HOST_EMAIL } from '../contact';
+import { LineIcon } from './icons/LineIcon';
 
 interface FooterProps {
   lang: Language;
@@ -11,14 +14,8 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang].footer;
   const brand = translations[lang].brand;
   const nav = translations[lang].nav;
-
-  const whatsappMessage = lang === 'pl'
-    ? 'Dzień dobry, piszę ze strony The Edinburgh Garden House w sprawie rezerwacji.'
-    : lang === 'de'
-    ? 'Hallo, ich kontaktiere Sie über die Website The Edinburgh Garden House bezüglich einer Buchung.'
-    : lang === 'fr'
-    ? 'Bonjour, je vous contacte depuis le site The Edinburgh Garden House concernant une réservation.'
-    : 'Hello Jacek, I am contacting you via The Edinburgh Garden House website regarding a booking.';
+  const floating = translations[lang].floating;
+  const msg = inquiryMessage(lang);
 
   return (
     <footer className="ukoi-footer">
@@ -28,8 +25,8 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
           
           {/* Column 1: Brand */}
           <div className="footer-col">
-            <div className="footer-brand-title">
-              {brand.name}
+            <div className="footer-brand-logo-wrap" style={{ marginBottom: '16px' }}>
+              <BrandLogo variant="footer" />
             </div>
             <p className="footer-brand-desc">
               {t.brandDesc}
@@ -62,36 +59,36 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </address>
           </div>
 
-          {/* Column 3: Contact */}
+          {/* Column 3: Contact (SMS & Email only, no phone calls) */}
           <div className="footer-col">
             <h4 className="footer-col-header">{t.contactHeader}</h4>
             <ul className="footer-links-list">
               <li>
                 <strong>Host:</strong> Jacek (Superhost)
               </li>
-              <li>
-                Phone: <a href="tel:+447988065088">+44 7988 065088</a>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <LineIcon name="sms" size={16} />
+                <span>SMS:&nbsp;</span>
+                <a href={smsHref(msg)}>{HOST_PHONE_DISPLAY}</a>
               </li>
-              <li>
-                E-mail: <a href="mailto:jacek31-76@hotmail.com">jacek31-76@hotmail.com</a>
-              </li>
-              <li>
-                WhatsApp:{' '}
-                <a 
-                  href={`https://wa.me/447988065088?text=${encodeURIComponent(whatsappMessage)}`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  +44 7988 065088
-                </a>
-              </li>
-              <li>
-                SMS:{' '}
-                <a href={`sms:+447988065088?body=${encodeURIComponent(whatsappMessage)}`}>
-                  +44 7988 065088
-                </a>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <LineIcon name="mail" size={16} />
+                <span>E-mail:&nbsp;</span>
+                <a href={mailHref(msg, 'The Edinburgh Garden House – inquiry')}>{HOST_EMAIL}</a>
               </li>
             </ul>
+            <div style={{ 
+              marginTop: '16px', 
+              padding: '10px 14px', 
+              background: 'rgba(255, 255, 255, 0.05)', 
+              borderRadius: '4px', 
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              fontSize: '0.8rem',
+              color: '#A0A09A',
+              lineHeight: '1.45'
+            }}>
+              🌿 {floating.noCallsNote}
+            </div>
           </div>
 
           {/* Column 4: Quick Navigation & Amenities */}

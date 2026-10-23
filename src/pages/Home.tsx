@@ -5,6 +5,9 @@ import { HeroSlider } from '../components/HeroSlider';
 import { BotanicalDivider } from '../components/BotanicalDivider';
 import { FloralGarland } from '../components/florals/FloralGarland';
 import { FloralSpray } from '../components/florals/FloralSpray';
+import { HouseRulesGuidelines } from '../components/HouseRulesGuidelines';
+import { inquiryMessage, smsHref, mailHref } from '../contact';
+import { LineIcon } from '../components/icons/LineIcon';
 import { Language, translations } from '../translations';
 
 interface HomeProps {
@@ -28,13 +31,7 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
     }
   };
 
-  const whatsappMessage = lang === 'pl'
-    ? 'Dzień dobry, piszę ze strony The Edinburgh Garden House z zapytaniem o wolny termin.'
-    : lang === 'de'
-    ? 'Hallo, ich kontaktiere Sie über die Website The Edinburgh Garden House bezüglich einer Buchung.'
-    : lang === 'fr'
-    ? 'Bonjour, je vous contacte depuis le site The Edinburgh Garden House pour une demande de réservation.'
-    : 'Hello Jacek, I am inquiring about booking availability for The Edinburgh Garden House.';
+  const inquiryTxt = inquiryMessage(lang);
 
   return (
     <div className="home-page">
@@ -575,44 +572,39 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
       <section className="ukoi-section bg-subtle floral-host" id="rules-faq">
         <FloralSpray side="left" position="top" variant="a" />
         <FloralSpray side="right" position="bottom" variant="b" />
-        <div className="container editorial-narrow-container">
-          <div className="text-center">
-            <BotanicalDivider />
-            <h2 className="section-title">{t.rulesFaqSection.title}</h2>
-            <p className="section-editorial-text">{t.rulesFaqSection.subtitle}</p>
-          </div>
-
-          {/* Rules Table */}
-          <div className="rules-clean-table">
-            {t.rulesFaqSection.rules.map((rule, idx) => (
-              <div className="rule-row" key={idx}>
-                <span className="rule-title">{rule.title}</span>
-                <span className="rule-desc">{rule.desc}</span>
-              </div>
-            ))}
-          </div>
+        <div className="container">
+          
+          {/* Guidelines Poster Cards directly matching the client's printed guest guidelines */}
+          <HouseRulesGuidelines lang={lang} />
 
           {/* FAQ Accordion */}
-          <div className="clean-faq-list" style={{ marginTop: '40px' }}>
-            {t.rulesFaqSection.faqs.map((faq, idx) => (
-              <div className={`faq-item ${activeFaq === idx ? 'active' : ''}`} key={idx}>
-                <button type="button" className="faq-trigger" onClick={() => toggleFaq(idx)}>
-                  <span>{faq.q}</span>
-                  <span className="faq-sign">{activeFaq === idx ? '−' : '+'}</span>
-                </button>
-                {activeFaq === idx && (
-                  <div className="faq-answer">
-                    <p>{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="editorial-narrow-container" style={{ marginTop: '60px' }}>
+            <div className="text-center" style={{ marginBottom: '28px' }}>
+              <BotanicalDivider />
+              <h3 className="section-title" style={{ fontSize: '1.8rem' }}>{t.rulesFaqSection.faqTitle}</h3>
+            </div>
+
+            <div className="clean-faq-list">
+              {t.rulesFaqSection.faqs.map((faq, idx) => (
+                <div className={`faq-item ${activeFaq === idx ? 'active' : ''}`} key={idx}>
+                  <button type="button" className="faq-trigger" onClick={() => toggleFaq(idx)}>
+                    <span>{faq.q}</span>
+                    <span className="faq-sign">{activeFaq === idx ? '−' : '+'}</span>
+                  </button>
+                  {activeFaq === idx && (
+                    <div className="faq-answer">
+                      <p>{faq.a}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* 11. SAGE CONTACT BANNER */}
+      {/* 11. SAGE CONTACT BANNER (SMS & EMAIL ONLY — NO CALLS) */}
       <section className="sage-banner-section" id="contact">
         <div className="container sage-banner-container">
           <div className="banner-text-col">
@@ -621,18 +613,27 @@ export const Home: React.FC<HomeProps> = ({ lang, onOpenBooking }) => {
             <p className="banner-desc">
               {t.contactBanner.desc}
             </p>
+            <div className="banner-work-notice">
+              <span>🌿</span>
+              <span>{t.contactBanner.noCallsNote}</span>
+            </div>
           </div>
           <div className="banner-actions-col">
-            <a href="tel:+447988065088" className="btn-banner-phone">
-              {t.contactBanner.callBtn}
+            <a 
+              href={smsHref(inquiryTxt)} 
+              className="btn-banner-sms"
+              title="Send SMS"
+            >
+              <LineIcon name="sms" size={18} />
+              <span>{t.contactBanner.smsBtn}</span>
             </a>
             <a 
-              href={`https://wa.me/447988065088?text=${encodeURIComponent(whatsappMessage)}`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn-banner-whatsapp"
+              href={mailHref(inquiryTxt, 'The Edinburgh Garden House Booking Inquiry')} 
+              className="btn-banner-email"
+              title="Send Email"
             >
-              {t.contactBanner.whatsappBtn}
+              <LineIcon name="mail" size={18} />
+              <span>{t.contactBanner.emailBtn}</span>
             </a>
           </div>
         </div>

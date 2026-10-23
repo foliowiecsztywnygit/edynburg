@@ -110,3 +110,38 @@
   .floral-spray--left  { transform: translateX(-38%); }
   .floral-spray--right { transform: translateX(38%) scaleX(-1); }
 }
+
+/* ---------- Watercolor corner botanical accents ---------- */
+.watercolor-corner {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  width: clamp(120px, 16vw, 210px);
+  aspect-ratio: 1 / 1;
+  opacity: 0.85;
+}
+
+.watercolor-corner--top-left {
+  top: 0;
+  left: 0;
+}
+
+.watercolor-corner--top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.watercolor-corner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .watercolor-corner {
+    width: 90px;
+    opacity: 0.6;
+  }
+}
